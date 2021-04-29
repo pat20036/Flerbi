@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/tagsFragment"
+        android:enabled="true"
+        android:title="Tagi"/>
+    <item
+        android:id="@+id/searchFragment"
+        android:enabled="true"
+        android:title="Szukaj"/>
+    <item
+        android:id="@+id/profileFragment"
+        android:enabled="true"
+        android:title="Profil" />
+</menu>

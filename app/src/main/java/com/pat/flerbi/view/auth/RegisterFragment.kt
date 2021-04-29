@@ -60,4 +60,5 @@ class RegisterFragment : Fragment() {
         reNickname =
             view?.findViewById<TextInputLayout>(R.id.nicknameRegEditText)?.editText?.text.toString()
     }
+
 }

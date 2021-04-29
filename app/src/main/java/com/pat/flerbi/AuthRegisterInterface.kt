@@ -43,13 +43,12 @@ class AuthRegisterInterfaceImpl(private val context: Context) : AuthRegisterInte
         if (email.isBlank() || password.isBlank() || password.length < 6 || password != rePassword || rePassword.isBlank() || !touCheckBox) {
 
             if (password != rePassword) {
-                //error
+               // errorMessage("Passwords do not match")
             }
 
             if (!touCheckBox) {
-                //error
+               // errorMessage("Accept Terms of Use")
             }
-
 
         } else {
             isNicknameFree(email,password,nickname)
@@ -62,7 +61,7 @@ class AuthRegisterInterfaceImpl(private val context: Context) : AuthRegisterInte
         database.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
-                    //error
+                   // errorMessage("Username taken")
                 } else {
                     registerUser(email, password, nickname)
                 }
@@ -95,7 +94,7 @@ class AuthRegisterInterfaceImpl(private val context: Context) : AuthRegisterInte
                 Log.d("Main", "Fail to create user: ${it.message}")
                 when (it) {
                     is FirebaseAuthUserCollisionException -> {
-                        //error email exists
+                     // "Account with this email already exists"
                     }
                 }
             }
@@ -108,6 +107,8 @@ class AuthRegisterInterfaceImpl(private val context: Context) : AuthRegisterInte
             ref.setValue(RegisterData(nickname, uid, 0, 0, 0, 0))
         }
     }
+
+
 
 
 }
