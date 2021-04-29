@@ -1,4 +1,4 @@
-package com.pat.flerbi
+package com.pat.flerbi.view.auth
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import com.pat.flerbi.R
 import com.pat.flerbi.databinding.FragmentLoginBinding
 
 

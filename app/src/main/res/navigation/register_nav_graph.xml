@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/welcomeFragment"
-        android:name="com.pat.flerbi.WelcomeFragment"
+        android:name="com.pat.flerbi.view.auth.WelcomeFragment"
         android:label="WelcomeFragment" >
         <action
             android:id="@+id/action_welcomeFragment_to_loginFragment"
@@ -18,12 +18,12 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.pat.flerbi.RegisterFragment"
+        android:name="com.pat.flerbi.view.auth.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.pat.flerbi.LoginFragment"
+        android:name="com.pat.flerbi.view.auth.LoginFragment"
         android:label="LoginFragment" >
         <action
             android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
@@ -31,6 +31,6 @@
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordFragment"
-        android:name="com.pat.flerbi.ForgotPasswordFragment"
+        android:name="com.pat.flerbi.view.ForgotPasswordFragment"
         android:label="ForgotPasswordFragment" />
 </navigation>
