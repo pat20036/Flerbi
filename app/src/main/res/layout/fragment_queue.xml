@@ -56,7 +56,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView7">
 
                     <EditText
-                        android:id="@+id/location_text"
+                        android:id="@+id/locationEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
@@ -122,16 +122,6 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
-
-                <include
-                    android:id="@+id/search_bar"
-                    layout="@layout/progress_bar"
-                    android:layout_width="match_parent"
-                    android:layout_height="400dp"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/tipsLayout"

@@ -31,6 +31,6 @@
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordFragment"
-        android:name="com.pat.flerbi.view.ForgotPasswordFragment"
+        android:name="com.pat.flerbi.view.auth.ForgotPasswordFragment"
         android:label="ForgotPasswordFragment" />
 </navigation>

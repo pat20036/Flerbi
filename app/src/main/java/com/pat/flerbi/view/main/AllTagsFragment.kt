@@ -1,4 +1,4 @@
-package com.pat.flerbi.main
+package com.pat.flerbi.view.main
 
 import android.os.Bundle
 import android.view.LayoutInflater

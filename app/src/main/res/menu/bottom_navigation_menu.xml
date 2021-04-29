@@ -4,7 +4,7 @@
         android:enabled="true"
         android:title="Tagi"/>
     <item
-        android:id="@+id/searchFragment"
+        android:id="@+id/mainFragment"
         android:enabled="true"
         android:title="Szukaj"/>
     <item

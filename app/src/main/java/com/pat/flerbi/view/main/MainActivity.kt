@@ -1,11 +1,11 @@
-package com.pat.flerbi
+package com.pat.flerbi.view.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.pat.flerbi.R
 import com.pat.flerbi.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

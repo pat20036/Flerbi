@@ -7,7 +7,40 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.pat.flerbi.MainFragment"
+        android:name="com.pat.flerbi.view.main.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_locationSettingsFragment"
+            app:destination="@id/locationSettingsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_queueFragment"
+            app:destination="@id/queueFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.pat.flerbi.view.main.ProfileFragment"
+        android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/tagsFragment"
+        android:name="com.pat.flerbi.view.main.TagsFragment"
+        android:label="TagsFragment" >
+        <action
+            android:id="@+id/action_tagsFragment_to_allTagsFragment"
+            app:destination="@id/allTagsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/locationSettingsFragment"
+        android:name="com.pat.flerbi.view.main.LocationSettingsFragment"
+        android:label="LocationSettingsFragment" />
+    <fragment
+        android:id="@+id/allTagsFragment"
+        android:name="com.pat.flerbi.view.main.AllTagsFragment"
+        android:label="fragment_all_tags"
+        tools:layout="@layout/fragment_all_tags" />
+    <fragment
+        android:id="@+id/queueFragment"
+        android:name="com.pat.flerbi.view.main.QueueFragment"
+        android:label="fragment_queue"
+        tools:layout="@layout/fragment_queue" />
 </navigation>

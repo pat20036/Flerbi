@@ -3,10 +3,6 @@ package com.pat.flerbi
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import android.view.View
-import android.widget.CheckBox
-import androidx.core.content.ContextCompat.startActivity
-import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.database.DataSnapshot
@@ -14,6 +10,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.pat.flerbi.model.RegisterData
+import com.pat.flerbi.view.main.MainActivity
 
 interface AuthRegisterInterface {
     fun dataValidator(

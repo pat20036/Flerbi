@@ -1,10 +1,11 @@
-package com.pat.flerbi
+package com.pat.flerbi.view.main
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.pat.flerbi.R
 
 
 class ProfileFragment : Fragment() {

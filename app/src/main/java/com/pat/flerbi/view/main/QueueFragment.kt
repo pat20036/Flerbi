@@ -1,7 +1,6 @@
-package com.pat.flerbi
+package com.pat.flerbi.view.main
 
 
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -9,9 +8,6 @@ import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
-import android.widget.EditText
-import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
@@ -57,8 +53,8 @@ class QueueFragment : Fragment() {
 
         binding.searchButton.setOnClickListener()
         {
-            val textLoc = binding.locationText.text
-            val textLocLength = binding.locationText.text.length
+            val textLoc = binding.locationEditText.text
+            val textLocLength = binding.locationEditText.text.length
             if (textLocLength > 1 && textLoc.isNotBlank() && searchSecurity == 0) {
                 searchSecurity = 1
                 roomNr = 1
