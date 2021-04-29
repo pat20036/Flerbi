@@ -2,4 +2,18 @@
     <string name="app_name">Flerbi</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_people_and_cities">Search people and cities.</string>
+    <string name="sign_in">Sign in</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="create_account">Create account.</string>
+    <string name="terms_of_use">Terms of Use</string>
+    <string name="create_account_register">Create account</string>
+    <string name="e_mail">E-mail</string>
+    <string name="password">Password</string>
+    <string name="nickname">Nickname</string>
+    <string name="accept_terms_of_use">Accept terms of use</string>
+    <string name="log_in">Log In</string>
+    <string name="remind_password">Remind Password</string>
+    <string name="enter_your_e_mail">Enter your E-mail</string>
+    <string name="forgot_password">Forgot password?</string>
 </resources>
