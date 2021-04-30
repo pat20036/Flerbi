@@ -8,8 +8,10 @@ import org.koin.dsl.module
 
 val modules = module {
     viewModel { AuthViewModel(get(), get()) }
-    viewModel { UserViewModel(get()) }
+    viewModel { UserViewModel(get(),get(), get()) }
     single <UserInterface>{ UserInterfaceImpl(androidContext()) }
+    single <DatabaseInterface>{ DatabaseInterfaceImpl() }
+    single <SharedPreferencesInterface>{ SharedPreferencesInterfaceImpl(androidContext()) }
     single<AuthRegisterInterface> { AuthRegisterInterfaceImpl(androidContext()) }
     single <AuthLoginInterface>{ AuthLoginInterfaceImpl(androidContext()) }
 }

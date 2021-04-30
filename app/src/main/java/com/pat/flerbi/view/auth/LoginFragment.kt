@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.pat.flerbi.R
 import com.pat.flerbi.databinding.FragmentLoginBinding
 import com.pat.flerbi.viewmodel.AuthViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -16,7 +17,7 @@ class LoginFragment : Fragment() {
     private lateinit var email: String
     private lateinit var password: String
     private lateinit var binding: FragmentLoginBinding
-    private val authViewModel by viewModel<AuthViewModel>()
+    private val authViewModel by sharedViewModel<AuthViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

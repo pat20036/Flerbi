@@ -9,6 +9,7 @@ import com.google.android.material.textfield.TextInputLayout
 import com.pat.flerbi.R
 import com.pat.flerbi.databinding.FragmentRegisterBinding
 import com.pat.flerbi.viewmodel.AuthViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -19,7 +20,7 @@ class RegisterFragment : Fragment() {
     private lateinit var rePassword: String
     private lateinit var reNickname: String
     private var touAccepted = false
-    private val authViewModel by viewModel<AuthViewModel>()
+    private val authViewModel by sharedViewModel<AuthViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

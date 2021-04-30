@@ -1,6 +1,7 @@
 package com.pat.flerbi.view.main
 
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -8,12 +9,15 @@ import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.pat.flerbi.QueueService
 import com.pat.flerbi.R
 import com.pat.flerbi.databinding.FragmentQueueBinding
 
@@ -50,7 +54,6 @@ class QueueFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         //val animation = AnimationUtils.loadAnimation(activity?.applicationContext, R.anim.fade_in)
-
         binding.searchButton.setOnClickListener()
         {
             val textLoc = binding.locationEditText.text
@@ -58,7 +61,7 @@ class QueueFragment : Fragment() {
             if (textLocLength > 1 && textLoc.isNotBlank() && searchSecurity == 0) {
                 searchSecurity = 1
                 roomNr = 1
-               // startSearch()
+                startSearch()
             } else {
                 Snackbar.make(requireView(), "Niepoprawne dane!", Snackbar.LENGTH_SHORT).show()
             }
@@ -75,7 +78,7 @@ class QueueFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
-        //activity?.stopService(Intent(context, QueueService::class.java))
+        activity?.stopService(Intent(context, QueueService::class.java))
         val handler = Handler()
         handler.postDelayed(Runnable {
             searchSecurity = 0
@@ -119,42 +122,42 @@ class QueueFragment : Fragment() {
 //    }
 //
 //
-//    private fun startSearch() {
-//        val animation = AnimationUtils.loadAnimation(activity?.applicationContext, R.anim.fade_in)
-//        val searchBar = view?.findViewById<ConstraintLayout>(R.id.search_bar)
-//        val handler = Handler()
-//        handler.postDelayed(Runnable { // Do something after 5s = 5000ms
-//            searchBar?.visibility = View.VISIBLE
-//            searchBar?.animation = animation
-//            view?.findViewById<ConstraintLayout>(R.id.tipsLayout)?.visibility = View.GONE
-//            data()
-//            activity?.startService(Intent(context, QueueService::class.java))
-//        }, 1)
-//
-//
-//        view?.findViewById<TextView>(R.id.cancel)?.setOnClickListener()
-//        {
-//            searchSecurity = 0
-//            activity?.stopService(Intent(context, QueueService::class.java))
-//            val ref = FirebaseDatabase.getInstance().getReference("queue")
-//                .child("${location + roomNr}")
-//            ref.removeValue()
-//            view?.findViewById<ConstraintLayout>(R.id.tipsLayout)?.visibility = View.VISIBLE
-//            searchBar?.visibility = View.GONE
-//        }
-//        saveLastLocation()
-//
-//
-//    }
-//
-//
-//    private fun data() {
-//        val locationNoEdit = view?.findViewById<EditText>(R.id.location_text)?.text.toString()
-//        locationTextView.text = locationNoEdit
-//        location = locationNoEdit.replace(" ", "")
-//
-//
-//    }
+    private fun startSearch() {
+       // val animation = AnimationUtils.loadAnimation(activity?.applicationContext, R.anim.fade_in)
+        val searchBar = view?.findViewById<ConstraintLayout>(R.id.search_bar)
+        val handler = Handler()
+        handler.postDelayed(Runnable { // Do something after 5s = 5000ms
+            searchBar?.visibility = View.VISIBLE
+            //searchBar?.animation = animation
+            view?.findViewById<ConstraintLayout>(R.id.tipsLayout)?.visibility = View.GONE
+            data()
+            activity?.startService(Intent(context, QueueService::class.java))
+        }, 1)
+
+
+        view?.findViewById<TextView>(R.id.cancel)?.setOnClickListener()
+        {
+            searchSecurity = 0
+            activity?.stopService(Intent(context, QueueService::class.java))
+            val ref = FirebaseDatabase.getInstance().getReference("queue")
+                .child("${location + roomNr}")
+            ref.removeValue()
+            view?.findViewById<ConstraintLayout>(R.id.tipsLayout)?.visibility = View.VISIBLE
+            searchBar?.visibility = View.GONE
+        }
+        //saveLastLocation()
+
+
+    }
+
+
+    private fun data() {
+        val locationNoEdit = view?.findViewById<EditText>(R.id.locationEditText)?.text.toString()
+        //locationTextView.text = locationNoEdit
+        location = locationNoEdit.replace(" ", "")
+
+
+    }
 
 }
 

@@ -35,7 +35,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
                 android:fontFamily="@font/montserrat"
                 android:textColor="#FFFFFF"
                 android:textSize="14sp"
@@ -129,14 +128,15 @@
                         android:id="@+id/locationEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:autofillHints=""
                         android:background="@null"
-                        android:drawableLeft="@drawable/person_search_24px"
+                        android:drawableStart="@drawable/person_search_24px"
                         android:drawablePadding="10dp"
                         android:ems="10"
                         android:focusable="false"
                         android:focusableInTouchMode="false"
                         android:fontFamily="@font/montserrat_bold"
-                        android:hint="Wpisz lokalizację..."
+                        android:hint="@string/type_location"
                         android:inputType="textPersonName"
                         android:paddingLeft="10dp"
                         android:paddingTop="10dp"
@@ -145,7 +145,7 @@
                         android:scrollbarSize="30dp"
                         android:textColor="#FFFFFF"
                         android:textColorHint="#A6A6A6"
-                        android:textSize="11sp"
+                        android:textSize="12sp"
                         android:textStyle="bold"
                         android:transitionName="search2" />
 
@@ -170,10 +170,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="Twoje Informacje"
+                    android:text="@string/yours"
                     android:textSize="11sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout6" />
@@ -266,7 +265,7 @@
                             android:gravity="center"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
-                            android:text="   Punkty  "
+                            android:text="   Points "
                             android:textColor="#A8A8A8"
                             android:textSize="10sp" />
 
@@ -277,7 +276,7 @@
                             android:gravity="center"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
-                            android:text=" Polecenia "
+                            android:text="Recommends "
                             android:textColor="#A8A8A8"
                             android:textSize="10sp" />
 
@@ -288,7 +287,7 @@
                             android:gravity="center"
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
-                            android:text="Osiągnięcia"
+                            android:text="Achievements"
                             android:textColor="#A8A8A8"
                             android:textSize="10sp" />
 
@@ -326,7 +325,7 @@
                     android:gravity="center"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="Wszystkie z powyższych statystyk możesz uzyskać dzięki konwersacjom."
+                    android:text="@string/all_of_above_stats_you_can_achieve_by_conversation"
                     android:textColor="#BCBCBC"
                     android:textSize="10sp"
                     app:layout_constraintEnd_toEndOf="@+id/tableLayout"
@@ -339,10 +338,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
                     android:layout_marginTop="24dp"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="Informacje ogólne"
+                    android:text="@string/general"
                     android:textSize="11sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView65" />
@@ -384,10 +382,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
-                            android:layout_marginLeft="16dp"
                             android:fontFamily="@font/montserrat_bold"
-                            android:text="Aktywni użytkownicy:"
-                            android:textSize="11sp"
+                            android:text="@string/active_users"
+                            android:textSize="12sp"
                             app:layout_constraintStart_toEndOf="@+id/imageView18"
                             app:layout_constraintTop_toTopOf="@+id/imageView18" />
 
@@ -398,7 +395,7 @@
                             android:fontFamily="@font/montserrat_bold"
                             android:text="0"
                             android:textColor="#000000"
-                            android:textSize="11sp"
+                            android:textSize="12sp"
                             app:layout_constraintStart_toStartOf="@+id/textView68"
                             app:layout_constraintTop_toBottomOf="@+id/textView68" />
 
@@ -407,20 +404,20 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:src="@drawable/public_black_24dp"
-                            android:tint="#EF5350"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="#EF5350" />
 
                         <ImageView
                             android:id="@+id/imageView22"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/more_vert_black_24dp"
-                            android:tint="#000000"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="#000000" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -449,19 +446,19 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:src="@drawable/history_24px"
-                            android:tint="#AB47BC"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="#AB47BC" />
 
                         <TextView
                             android:id="@+id/lastLocationTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/montserrat_bold"
-                            android:text="Brak"
+                            android:text="@string/empty"
                             android:textColor="#000000"
-                            android:textSize="11sp"
+                            android:textSize="12sp"
                             app:layout_constraintStart_toStartOf="@+id/textView70"
                             app:layout_constraintTop_toBottomOf="@+id/textView70" />
 
@@ -470,10 +467,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
-                            android:layout_marginLeft="16dp"
                             android:fontFamily="@font/montserrat_bold"
-                            android:text="Ostatnia lokalizacja"
-                            android:textSize="11sp"
+                            android:text="@string/last_location"
+                            android:textSize="12sp"
                             app:layout_constraintStart_toEndOf="@+id/imageView23"
                             app:layout_constraintTop_toTopOf="@+id/imageView23" />
 
@@ -482,10 +478,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/more_vert_black_24dp"
-                            android:tint="#000000"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="#000000" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -514,10 +510,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
-                            android:layout_marginLeft="16dp"
                             android:fontFamily="@font/montserrat_bold"
-                            android:text="Ulubiona lokalizacja"
-                            android:textSize="11sp"
+                            android:text="@string/favorite_location"
+                            android:textSize="12sp"
                             app:layout_constraintStart_toEndOf="@+id/imageView27"
                             app:layout_constraintTop_toTopOf="@+id/imageView27" />
 
@@ -526,9 +521,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/montserrat_bold"
-                            android:text="Brak"
+                            android:text="@string/empty"
                             android:textColor="#000000"
-                            android:textSize="11sp"
+                            android:textSize="12sp"
                             app:layout_constraintStart_toStartOf="@+id/textView75"
                             app:layout_constraintTop_toBottomOf="@+id/textView75" />
 
@@ -537,21 +532,21 @@
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:src="@drawable/favorite_border_black_24dp"
-                            android:tint="#9CCC65"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.485" />
+                            app:layout_constraintVertical_bias="0.485"
+                            app:tint="#9CCC65" />
 
                         <ImageView
                             android:id="@+id/imageView28"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/more_vert_black_24dp"
-                            android:tint="#000000"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="#000000" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -570,10 +565,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/montserrat"
-                    android:text="Wyszukaj"
+                    android:text="@string/search"
                     android:textColor="#FFFFFF"
                     android:textSize="30sp"
                     android:textStyle="bold"

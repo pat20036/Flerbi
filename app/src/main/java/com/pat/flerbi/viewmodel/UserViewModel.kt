@@ -9,9 +9,15 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.pat.flerbi.DatabaseInterface
+import com.pat.flerbi.SharedPreferencesInterface
 import com.pat.flerbi.UserInterface
 
-class UserViewModel(private val userInterface: UserInterface):ViewModel() {
+class UserViewModel(
+    private val userInterface: UserInterface,
+    private val sharedPreferencesInterface: SharedPreferencesInterface,
+    private val databaseInterface: DatabaseInterface
+) : ViewModel() {
     private val uid = FirebaseAuth.getInstance().uid
     private val _isUserActive = MutableLiveData<Boolean>()
     val isUserActive: LiveData<Boolean> get() = _isUserActive
@@ -28,19 +34,42 @@ class UserViewModel(private val userInterface: UserInterface):ViewModel() {
     private val _userNickname = MutableLiveData<String>()
     val userNickname: LiveData<String> get() = _userNickname
 
+    private val _usersCount = MutableLiveData<String>()
+    val usersCount: LiveData<String> get() = _usersCount
+
     private val _profileTags = MutableLiveData<List<String>>()
     val profileTags: LiveData<List<String>> get() = _profileTags
 
-    fun getUserNickname()
-    {
-     _userNickname.value = userInterface.getUserNickname()
+    private val _userEmail = MutableLiveData<String>()
+    val userEmail: LiveData<String> get() = _userEmail
+
+    fun getUserNickname() {
+        _userNickname.value = sharedPreferencesInterface.getUserNickname()
     }
 
-    fun isUserActive()
+    fun getActiveUsersCount() {
+        _usersCount.value = sharedPreferencesInterface.getActiveUsersCount()
+    }
+
+    fun getUserEmail()
     {
+       _userEmail.value = userInterface.getUserEmail()
+    }
+
+    fun addToActiveUsers() {
+        databaseInterface.addToActiveUsers()
+    }
+    fun removeFromActiveUsers()
+    {
+        databaseInterface.removeFromActiveUsers()
+    }
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    fun isUserActive() {
         _isUserActive.value = false
         val database = FirebaseDatabase.getInstance().getReference("TestConnection")
-        database.addListenerForSingleValueEvent(object: ValueEventListener {
+        database.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 _isUserActive.value = true
             }
@@ -144,8 +173,6 @@ class UserViewModel(private val userInterface: UserInterface):ViewModel() {
         })
 
     }
-
-
 
 
 }

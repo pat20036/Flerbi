@@ -16,4 +16,14 @@
     <string name="remind_password">Remind Password</string>
     <string name="enter_your_e_mail">Enter your E-mail</string>
     <string name="forgot_password">Forgot password?</string>
+    <string name="search">Search</string>
+    <string name="active_users">Active users:</string>
+    <string name="last_location">Last location:</string>
+    <string name="favorite_location">Favorite location:</string>
+    <string name="general">General</string>
+    <string name="type_location">Type location...</string>
+    <string name="yours">Yours</string>
+    <string name="points">   Points</string>
+    <string name="all_of_above_stats_you_can_achieve_by_conversation">All of above stats you can achieve by conversation.</string>
+    <string name="empty">Empty</string>
 </resources>

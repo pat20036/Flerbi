@@ -11,11 +11,12 @@ import androidx.navigation.fragment.findNavController
 import com.pat.flerbi.R
 import com.pat.flerbi.databinding.FragmentMainBinding
 import com.pat.flerbi.viewmodel.UserViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainFragment : Fragment() {
     private lateinit var binding: FragmentMainBinding
-    private val userViewModel by viewModel<UserViewModel>()
+    private val userViewModel by sharedViewModel<UserViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,8 +32,10 @@ class MainFragment : Fragment() {
         userViewModel.getProfileAchievements()
         userViewModel.getProfileRecommends()
         userViewModel.getUserNickname()
+        userViewModel.getActiveUsersCount()
         observeUserStats()
         observeUserStatus()
+        observeActiveUsersCount()
 
         binding.nicknameTextView.text =  userViewModel.userNickname.value
         binding.statsNicknameTextView.text =  userViewModel.userNickname.value
@@ -47,6 +50,13 @@ class MainFragment : Fragment() {
                 extras
             )
         }
+    }
+
+    private fun observeActiveUsersCount()
+    {
+        userViewModel.usersCount.observe(viewLifecycleOwner, Observer {
+            binding.activeUsersTextView.text = it
+        })
     }
 
     private fun observeUserStatus() {

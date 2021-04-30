@@ -1,5 +1,6 @@
 package com.pat.flerbi
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -84,7 +85,8 @@ class AuthRegisterInterfaceImpl(private val context: Context) : AuthRegisterInte
                     sharedPreferences.edit().putString("nick", nickname).apply()
                     val intent = Intent(context.applicationContext, MainActivity::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                    context.startActivity(intent)
+
+                     context.startActivity(intent)
                 }
             }
             .addOnFailureListener {

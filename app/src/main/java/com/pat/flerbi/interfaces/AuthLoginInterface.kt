@@ -1,5 +1,6 @@
 package com.pat.flerbi
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import com.google.firebase.auth.FirebaseAuth

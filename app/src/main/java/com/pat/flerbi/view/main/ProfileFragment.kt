@@ -6,16 +6,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.pat.flerbi.R
+import com.pat.flerbi.databinding.FragmentProfileBinding
+import com.pat.flerbi.viewmodel.UserViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class ProfileFragment : Fragment() {
-
+    private lateinit var binding: FragmentProfileBinding
+    private val userViewModel by sharedViewModel<UserViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        binding = FragmentProfileBinding.inflate(layoutInflater)
+        return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        userViewModel.getUserEmail()
+        binding.nicknameProfileTextView.text = userViewModel.userNickname.value
+        binding.emailProfileTextView.text = userViewModel.userEmail.value
     }
 
 }
