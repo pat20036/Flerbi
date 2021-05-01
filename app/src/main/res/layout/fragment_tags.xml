@@ -44,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat"
-                android:text="Tagi użytkownika"
+                android:text="@string/user_tags"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -75,10 +75,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:layout_marginLeft="12dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/montserrat"
-                android:text="Twoje tagi"
+                android:text="@string/your_tags"
                 android:textColor="#000000"
                 android:textSize="36sp"
                 android:textStyle="bold"
@@ -101,7 +100,7 @@
             </com.google.android.material.chip.ChipGroup>
 
             <ProgressBar
-                android:id="@+id/loading_tags"
+                android:id="@+id/loadingTagsProgressBar"
                 style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -112,10 +111,10 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <TextView
-                android:id="@+id/tags_info_tv"
+                android:id="@+id/tagsInfoTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nie masz przypisanych żadnych tagów."
+                android:text="@string/you_don_t_have_tags_assigned"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -123,27 +122,26 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <Button
-                android:id="@+id/assign_tags_bt"
+                android:id="@+id/assignTagsButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Przypisz tagi"
+                android:text="@string/assign_tags"
                 android:textAllCaps="false"
                 android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="@+id/tags_info_tv"
+                app:layout_constraintEnd_toEndOf="@+id/tagsInfoTextView"
                 app:layout_constraintHorizontal_bias="0.491"
-                app:layout_constraintStart_toStartOf="@+id/tags_info_tv"
-                app:layout_constraintTop_toBottomOf="@+id/tags_info_tv" />
+                app:layout_constraintStart_toStartOf="@+id/tagsInfoTextView"
+                app:layout_constraintTop_toBottomOf="@+id/tagsInfoTextView" />
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/montserrat"
-                android:text="Aktualnie przypisane"
+                android:text="@string/currently_assigned"
                 android:textColor="#000000"
                 android:textSize="14sp"
                 android:textStyle="bold"
@@ -156,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/montserrat"
-                android:text="Twój rozmówca będzie mógł je zobaczyć."
+                android:text="@string/your_interlocutor_will_saw_this_tags"
                 app:layout_constraintStart_toStartOf="@+id/textView63"
                 app:layout_constraintTop_toBottomOf="@+id/textView63" />
 

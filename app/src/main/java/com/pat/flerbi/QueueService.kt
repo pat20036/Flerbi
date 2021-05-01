@@ -202,7 +202,7 @@ class QueueService : Service() {
                         return queue()
 
                     } else {
-                       //error
+                        //error
                     }
 
                 } else {
@@ -222,18 +222,12 @@ class QueueService : Service() {
                         )
                     )
 
-
-
                     ref.addChildEventListener(object : ChildEventListener {
                         override fun onChildAdded(
                             snapshot: DataSnapshot,
                             previousChildName: String?
                         ) {
-
-
                             val dane = snapshot.getValue(QueueData::class.java)
-
-
 
                             ref.addValueEventListener(object : ValueEventListener {
                                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -265,18 +259,12 @@ class QueueService : Service() {
                                         //roomNr = +1
                                         return queue()
                                     }
-
                                 }
-
                                 override fun onCancelled(error: DatabaseError) {
 
                                 }
-
                             })
-
-
                         }
-
 
                         override fun onChildChanged(
                             snapshot: DataSnapshot,

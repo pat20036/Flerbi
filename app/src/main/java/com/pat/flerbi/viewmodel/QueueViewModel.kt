@@ -2,11 +2,19 @@ package com.pat.flerbi.viewmodel
 
 import androidx.lifecycle.ViewModel
 import com.pat.flerbi.interfaces.QueueInterface
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class QueueViewModel(private val queueInterface: QueueInterface):ViewModel() {
 
     fun deleteQueueData(location: String, roomNr: Int)
     {
-        queueInterface.deleteQueueData(location, roomNr)
+        CoroutineScope(Dispatchers.IO).launch {
+            delay(500)
+            queueInterface.deleteQueueData(location, roomNr)
+        }
+
     }
 }

@@ -71,13 +71,10 @@ class QueueFragment : Fragment() {
         super.onPause()
         activity?.stopService(Intent(context, QueueService::class.java))
         searchSecurity = 0
-        val handler = Handler()
-        handler.postDelayed(Runnable {
-            queueViewModel.deleteQueueData(location, roomNr)
-        }, 500)
+
+        queueViewModel.deleteQueueData(location, roomNr)
 
     }
-
 
     private fun startSearch() {
         data()

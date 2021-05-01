@@ -147,7 +147,6 @@ class UserViewModel(
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val count = snapshot.childrenCount
-                Log.d("ILE", count.toString())
                 if (count == 0L) {
                     _profileTags.value = emptyList()
                 }

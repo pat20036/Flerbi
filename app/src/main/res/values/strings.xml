@@ -29,4 +29,10 @@
     <string name="type_message">Type message...</string>
     <string name="searching_in">Searching in:</string>
     <string name="cancel">Cancel</string>
+    <string name="your_tags">Your Tags</string>
+    <string name="your_interlocutor_will_saw_this_tags">Your interlocutor will saw this tags.</string>
+    <string name="currently_assigned">Currently assigned</string>
+    <string name="user_tags">User Tags</string>
+    <string name="assign_tags">Assign tags</string>
+    <string name="you_don_t_have_tags_assigned">You don\'t have tags assigned.</string>
 </resources>
