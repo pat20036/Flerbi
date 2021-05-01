@@ -20,27 +20,23 @@ import com.google.firebase.database.FirebaseDatabase
 import com.pat.flerbi.QueueService
 import com.pat.flerbi.R
 import com.pat.flerbi.databinding.FragmentQueueBinding
-import com.pat.flerbi.viewmodel.AuthViewModel
+import com.pat.flerbi.viewmodel.QueueViewModel
 import com.pat.flerbi.viewmodel.UserViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
 class QueueFragment : Fragment() {
     companion object {
-        const val TAG = "TAG"
         var location = ""
         var nick = ""
         var roomNr = 1
         var searchSecurity = 0
-
     }
-    private val userViewModel by sharedViewModel<UserViewModel>()
-    private var uid = FirebaseAuth.getInstance().uid
-    private lateinit var binding: FragmentQueueBinding
 
+    private lateinit var binding: FragmentQueueBinding
+    private val queueViewModel by sharedViewModel<QueueViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        @RequiresApi(Build.VERSION_CODES.KITKAT)
         sharedElementEnterTransition =
             TransitionInflater.from(context).inflateTransition(android.R.transition.move)
     }
@@ -48,7 +44,7 @@ class QueueFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentQueueBinding.inflate(layoutInflater)
         return binding.root
     }
@@ -56,98 +52,41 @@ class QueueFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        nick = "userViewModel.userNickname.value!!"
+
         binding.searchButton.setOnClickListener()
         {
-            val textLoc = binding.locationEditText.text
-            val textLocLength = binding.locationEditText.text.length
-            if (textLocLength > 1 && textLoc.isNotBlank() && searchSecurity == 0) {
+            val textLocation = binding.locationEditText.text
+            val textLocationLength = textLocation.length
+            if (textLocationLength > 1 && textLocation.isNotBlank() && searchSecurity == 0) {
                 searchSecurity = 1
                 roomNr = 1
                 startSearch()
             } else {
-                Snackbar.make(requireView(), "Niepoprawne dane!", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(requireView(), "Incorrect!", Snackbar.LENGTH_SHORT).show()
             }
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        //readFavoriteLocation()
     }
 
     override fun onPause() {
         super.onPause()
         activity?.stopService(Intent(context, QueueService::class.java))
+        searchSecurity = 0
         val handler = Handler()
         handler.postDelayed(Runnable {
-            searchSecurity = 0
-            val ref = FirebaseDatabase.getInstance().getReference("queue")
-                .child("${location + roomNr}/$uid")
-            ref.removeValue()
-            view?.findViewById<ConstraintLayout>(R.id.search_bar)?.visibility = View.GONE
+            queueViewModel.deleteQueueData(location, roomNr)
         }, 500)
-
 
     }
 
 
-//    private fun saveLastLocation() {
-//        val sharedPreferences =
-//            PreferenceManager.getDefaultSharedPreferences(activity?.applicationContext)
-//        var lastLocation = view?.findViewById<EditText>(R.id.location_text)?.text.toString()
-//
-//        val sharedPreferencesEditor = sharedPreferences.edit()
-//        sharedPreferencesEditor.putString("last_location", lastLocation)
-//        sharedPreferencesEditor.apply()
-//
-//        val lastLocationSP = sharedPreferences.getString(PREF_LOCATION, PREF_DEFAULT).toString()
-//
-//        view?.findViewById<TextView>(R.id.lastLocationTextView)?.text = "$lastLocationSP"
-//
-//    }
-//
-//
-//    private fun readFavoriteLocation() {
-//        val sharedPreferences =
-//            PreferenceManager.getDefaultSharedPreferences(activity?.applicationContext)
-//        val favLocation = sharedPreferences.getString("fav_location", "Brak")
-//        val favLocationCbStatus = sharedPreferences.getBoolean("fav_location_cb", false)
-//
-//        if (favLocationCbStatus)  view?.findViewById<EditText>(R.id.location_text)?.setText("$favLocation")
-//        if (!favLocationCbStatus) view?.findViewById<EditText>(R.id.location_text)?.requestFocus()
-//
-//
-//
-//    }
-//
-//
     private fun startSearch() {
-        val handler = Handler()
-        handler.postDelayed(Runnable { // Do something after 5s = 5000ms
-            data()
-            activity?.startService(Intent(context, QueueService::class.java))
-        }, 1)
-
-        view?.findViewById<TextView>(R.id.cancel)?.setOnClickListener()
-        {
-            searchSecurity = 0
-            activity?.stopService(Intent(context, QueueService::class.java))
-            val ref = FirebaseDatabase.getInstance().getReference("queue")
-                .child("${location + roomNr}")
-            ref.removeValue()
-        }
-        //saveLastLocation()
-
-
+        data()
+        activity?.startService(Intent(context, QueueService::class.java))
     }
 
     private fun data() {
         val locationNoEdit = view?.findViewById<EditText>(R.id.locationEditText)?.text.toString()
-        //locationTextView.text = locationNoEdit
         location = locationNoEdit.replace(" ", "")
-
-
     }
 
 }

@@ -1,8 +1,13 @@
-package com.pat.flerbi
+package com.pat.flerbi.di
 
+import com.pat.flerbi.*
 import com.pat.flerbi.interfaces.DatabaseChatRepositoryInterface
 import com.pat.flerbi.interfaces.DatabaseChatRepositoryInterfaceImpl
+import com.pat.flerbi.interfaces.QueueInterface
+import com.pat.flerbi.interfaces.QueueInterfaceImpl
 import com.pat.flerbi.viewmodel.AuthViewModel
+import com.pat.flerbi.viewmodel.ChatViewModel
+import com.pat.flerbi.viewmodel.QueueViewModel
 import com.pat.flerbi.viewmodel.UserViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -12,6 +17,8 @@ val modules = module {
     viewModel { AuthViewModel(get(), get()) }
     viewModel { UserViewModel(get(),get(), get()) }
     viewModel { ChatViewModel(get()) }
+    viewModel { QueueViewModel(get()) }
+    single <QueueInterface> { QueueInterfaceImpl() }
     single <DatabaseChatRepositoryInterface>{ DatabaseChatRepositoryInterfaceImpl() }
     single <UserInterface>{ UserInterfaceImpl(androidContext()) }
     single <OnlineOfflineInterface>{ OnlineOfflineInterfaceImpl() }

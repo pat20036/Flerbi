@@ -18,6 +18,7 @@ class UserViewModel(
     private val sharedPreferencesInterface: SharedPreferencesInterface,
     private val databaseInterface: OnlineOfflineInterface
 ) : ViewModel() {
+
     private val uid = FirebaseAuth.getInstance().uid
     private val _isUserActive = MutableLiveData<Boolean>()
     val isUserActive: LiveData<Boolean> get() = _isUserActive

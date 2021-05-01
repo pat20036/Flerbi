@@ -2,16 +2,15 @@ package com.pat.flerbi
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.pat.flerbi.databinding.ActivityChatBinding
 import com.pat.flerbi.viewholders.MsgToMeViewHolder
 import com.pat.flerbi.viewholders.MsgToViewHolder
+import com.pat.flerbi.viewmodel.ChatViewModel
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ChatActivity : AppCompatActivity() {
@@ -38,17 +37,22 @@ class ChatActivity : AppCompatActivity() {
         binding.recyclerViewChat.layoutManager = LinearLayoutManager(this)
         binding.recyclerViewChat.adapter = adapter
 
+        observeMessages()
         chatViewModel.getMessages(roomKey, uid!!, matchUid)
 
-        chatViewModel.chatMessages.observe(this, Observer {
-            if(it.fromID == uid) adapter.add(MsgToViewHolder(it.msg, "Nick"))
-            else adapter.add(MsgToMeViewHolder(it.msg, "Nick"))
-        })
+
         binding.sendMessageButton.setOnClickListener()
         {
             val msg = binding.typeMessageEditText.text.toString()
             chatViewModel.sendMessage(msg, roomKey, uid!!, matchUid)
+            binding.typeMessageEditText.setText("")
         }
+    }
 
+    private fun observeMessages() {
+        chatViewModel.chatMessages.observe(this, Observer {
+            if (it.fromID == uid) adapter.add(MsgToViewHolder(it.msg, "Nick"))
+            else adapter.add(MsgToMeViewHolder(it.msg, "Nick"))
+        })
     }
 }

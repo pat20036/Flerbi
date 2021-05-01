@@ -16,7 +16,7 @@ class FlerbiApp:Application() {
         startKoin {
             androidLogger()
             androidContext(this@FlerbiApp)
-            modules(modules)
+            modules(com.pat.flerbi.di.modules)
         }
     }
 

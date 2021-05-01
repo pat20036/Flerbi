@@ -15,7 +15,6 @@ import androidx.core.app.NotificationCompat
 import androidx.navigation.NavDeepLinkBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.pat.flerbi.R
 import com.pat.flerbi.model.FirstUser
 import com.pat.flerbi.model.SecondUser
 import com.pat.flerbi.model.QueueData
@@ -36,6 +35,7 @@ class QueueService : Service() {
 
     private lateinit var oppNick: String
     private lateinit var oppUid: String
+
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
         val channelId =
@@ -46,8 +46,6 @@ class QueueService : Service() {
                 // https://developer.android.com/reference/android/support/v4/app/NotificationCompat.Builder.html#NotificationCompat.Builder(android.content.Context)
                 ""
             }
-
-
         queue()
 
         val notificationBuilder = NotificationCompat.Builder(applicationContext, channelId)
@@ -66,10 +64,7 @@ class QueueService : Service() {
             .setCategory(Notification.CATEGORY_SERVICE)
             .build()
 
-
         startForeground(101, notification)
-
-
 
         return START_NOT_STICKY
     }
@@ -106,7 +101,6 @@ class QueueService : Service() {
 
                     var count = snapshot.childrenCount.toInt()
 
-                    Log.d(QueueFragment.TAG, count.toString())
                     if (count == 1) {
 
                         ref2.setValue(SecondUser(QueueFragment.nick, uid, QueueFragment.location))
@@ -124,7 +118,6 @@ class QueueService : Service() {
 
                                         if (usersCount == 2L) {
                                             if (dane?.uid != uid) {
-
 
                                                 ref.removeEventListener(this)
                                                 oppUid = dane?.uid.toString()
@@ -205,21 +198,18 @@ class QueueService : Service() {
                     }
 
                     if (count == 2) {
-
-
                         QueueFragment.roomNr += 1
                         return queue()
 
-
                     } else {
-                        Log.d(QueueFragment.TAG, "Wystąpił błąd 2")
+                       //error
                     }
 
                 } else {
 
                     // Don't exist! Do something.
 
-                    roomKey = getKey(40)
+                    roomKey = getKey()
 
                     val ref2 = FirebaseDatabase.getInstance()
                         .getReference("queue/${QueueFragment.location + QueueFragment.roomNr}/$uid")
@@ -332,10 +322,10 @@ class QueueService : Service() {
             FirebaseDatabase.getInstance().getReference("user-tags/$oppUid/tags")
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val ile = snapshot.childrenCount
-                Log.d("ILE", ile.toString())
+                val count = snapshot.childrenCount
+                Log.d("ILE", count.toString())
 
-                for (i in 0..ile - 1) {
+                for (i in 0 until count) {
                     val ref2 = FirebaseDatabase.getInstance()
                         .getReference("user-tags/$oppUid/tags/$i")
                     ref2.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -344,30 +334,23 @@ class QueueService : Service() {
                             matchTags.add(dane)
                             Log.d("tagi", matchTags[i.toInt()])
 
-
                         }
 
                         override fun onCancelled(error: DatabaseError) {
-
                         }
-
                     })
-
                 }
-
             }
 
             override fun onCancelled(error: DatabaseError) {
 
             }
-
         })
-
     }
 
-    private fun getKey(length: Int): String {
+    private fun getKey(): String {
         val allowedChars = ('A'..'Z') + ('a'..'z') + ('0'..'9')
-        return (1..length)
+        return (1..40)
             .map { allowedChars.random() }
             .joinToString("")
     }
