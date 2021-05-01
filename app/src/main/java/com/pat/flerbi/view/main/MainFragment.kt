@@ -42,7 +42,7 @@ class MainFragment : Fragment() {
 
         binding.locationEditText.setOnClickListener()
         {
-            val extras = FragmentNavigatorExtras(binding.locationEditText to "search2", binding.cardView3 to "search")
+            val extras = FragmentNavigatorExtras(binding.locationEditText to "search2", binding.locationCardView to "search")
             findNavController().navigate(
                 R.id.action_mainFragment_to_queueFragment,
                 null,

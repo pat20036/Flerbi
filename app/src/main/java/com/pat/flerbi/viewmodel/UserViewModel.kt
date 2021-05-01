@@ -9,14 +9,14 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.pat.flerbi.DatabaseInterface
+import com.pat.flerbi.OnlineOfflineInterface
 import com.pat.flerbi.SharedPreferencesInterface
 import com.pat.flerbi.UserInterface
 
 class UserViewModel(
     private val userInterface: UserInterface,
     private val sharedPreferencesInterface: SharedPreferencesInterface,
-    private val databaseInterface: DatabaseInterface
+    private val databaseInterface: OnlineOfflineInterface
 ) : ViewModel() {
     private val uid = FirebaseAuth.getInstance().uid
     private val _isUserActive = MutableLiveData<Boolean>()

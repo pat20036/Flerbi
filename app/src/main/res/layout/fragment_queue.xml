@@ -31,7 +31,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/montserrat"
-                    android:text="Szukaj ludzi"
+                    android:text="@string/search"
                     android:textColor="#FFFFFF"
                     android:textSize="30sp"
                     android:textStyle="bold"
@@ -40,7 +40,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView3"
+                    android:id="@+id/locationCardView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
@@ -65,7 +65,7 @@
                         android:drawablePadding="10dp"
                         android:ems="10"
                         android:fontFamily="@font/montserrat_bold"
-                        android:hint="Wpisz lokalizację..."
+                        android:hint="@string/type_location"
                         android:inputType="textPersonName"
                         android:paddingLeft="10dp"
                         android:paddingTop="10dp"
@@ -86,9 +86,9 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     app:cardCornerRadius="5dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/cardView3"
+                    app:layout_constraintBottom_toBottomOf="@+id/locationCardView"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/cardView3">
+                    app:layout_constraintTop_toTopOf="@+id/locationCardView">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -109,59 +109,6 @@
                     app:layout_constraintEnd_toStartOf="@+id/textView7"
                     app:layout_constraintTop_toTopOf="@+id/textView7"
                     app:tint="#FFFFFF" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#FAFAFA"
-                android:paddingBottom="70dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/tipsLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="16dp"
-                    android:background="#FAFAFA"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:layout_editor_absoluteX="0dp">
-
-                    <TextView
-                        android:id="@+id/textView24"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:fontFamily="@font/montserrat"
-                        android:gravity="center"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:text="Przestrzegaj regulaminu, aby aplikacja była lepszym miejscem."
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <Button
-                        android:id="@+id/touButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:text="Regulamin"
-                        android:textAllCaps="false"
-                        android:textSize="10sp"
-                        app:layout_constraintEnd_toEndOf="@+id/textView24"
-                        app:layout_constraintHorizontal_bias="0.498"
-                        app:layout_constraintStart_toStartOf="@+id/textView24"
-                        app:layout_constraintTop_toBottomOf="@+id/textView24" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

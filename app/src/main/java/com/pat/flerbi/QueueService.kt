@@ -104,11 +104,10 @@ class QueueService : Service() {
                     val ref2 = FirebaseDatabase.getInstance()
                         .getReference("queue/${QueueFragment.location + QueueFragment.roomNr}/$uid")
 
-                    var ile = snapshot.childrenCount.toInt()
+                    var count = snapshot.childrenCount.toInt()
 
-
-                    Log.d(QueueFragment.TAG, ile.toString())
-                    if (ile == 1) {
+                    Log.d(QueueFragment.TAG, count.toString())
+                    if (count == 1) {
 
                         ref2.setValue(SecondUser(QueueFragment.nick, uid, QueueFragment.location))
 
@@ -205,7 +204,7 @@ class QueueService : Service() {
 
                     }
 
-                    if (ile == 2) {
+                    if (count == 2) {
 
 
                         QueueFragment.roomNr += 1

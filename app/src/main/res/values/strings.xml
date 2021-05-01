@@ -26,4 +26,7 @@
     <string name="points">   Points</string>
     <string name="all_of_above_stats_you_can_achieve_by_conversation">All of above stats you can achieve by conversation.</string>
     <string name="empty">Empty</string>
+    <string name="type_message">Type message...</string>
+    <string name="searching_in">Searching in:</string>
+    <string name="cancel">Cancel</string>
 </resources>
