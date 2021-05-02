@@ -15,7 +15,7 @@ val modules = module {
     viewModel { UserViewModel(get(),get(), get()) }
     viewModel { ChatViewModel(get()) }
     viewModel { QueueViewModel(get()) }
-    single <QueueInterface> { QueueInterfaceImpl() }
+    single <QueueInterface> { QueueInterfaceImpl(androidContext()) }
     single <DatabaseChatRepositoryInterface>{ DatabaseChatRepositoryInterfaceImpl() }
     single <UserInterface>{ UserInterfaceImpl(androidContext()) }
     single <OnlineOfflineInterface>{ OnlineOfflineInterfaceImpl() }

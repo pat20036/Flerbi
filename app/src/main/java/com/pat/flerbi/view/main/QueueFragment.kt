@@ -17,6 +17,9 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.pat.flerbi.QueueInfo.location
+import com.pat.flerbi.QueueInfo.roomNr
+import com.pat.flerbi.QueueInfo.searchSecurity
 import com.pat.flerbi.QueueService
 import com.pat.flerbi.R
 import com.pat.flerbi.databinding.FragmentQueueBinding
@@ -26,12 +29,6 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
 class QueueFragment : Fragment() {
-    companion object {
-        var location = ""
-        var nick = ""
-        var roomNr = 1
-        var searchSecurity = 0
-    }
 
     private lateinit var binding: FragmentQueueBinding
     private val queueViewModel by sharedViewModel<QueueViewModel>()
@@ -55,36 +52,18 @@ class QueueFragment : Fragment() {
 
         binding.searchButton.setOnClickListener()
         {
-            val textLocation = binding.locationEditText.text
-            val textLocationLength = textLocation.length
-            if (textLocationLength > 1 && textLocation.isNotBlank() && searchSecurity == 0) {
-                searchSecurity = 1
-                roomNr = 1
-                startSearch()
-            } else {
-                Snackbar.make(requireView(), "Incorrect!", Snackbar.LENGTH_SHORT).show()
-            }
+            location = binding.locationEditText.text.toString()
+            queueViewModel.startSearch()
         }
     }
 
+
     override fun onPause() {
         super.onPause()
-        activity?.stopService(Intent(context, QueueService::class.java))
-        searchSecurity = 0
-
+        queueViewModel.stopSearch()
         queueViewModel.deleteQueueData(location, roomNr)
-
     }
 
-    private fun startSearch() {
-        data()
-        activity?.startService(Intent(context, QueueService::class.java))
-    }
-
-    private fun data() {
-        val locationNoEdit = view?.findViewById<EditText>(R.id.locationEditText)?.text.toString()
-        location = locationNoEdit.replace(" ", "")
-    }
 
 }
 

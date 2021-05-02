@@ -13,8 +13,17 @@ class QueueViewModel(private val queueInterface: QueueInterface):ViewModel() {
     {
         CoroutineScope(Dispatchers.IO).launch {
             delay(500)
-            queueInterface.deleteQueueData(location, roomNr)
+            queueInterface.deleteQueueData()
         }
+    }
 
+    fun startSearch()
+    {
+        queueInterface.dataValidator()
+    }
+
+    fun stopSearch()
+    {
+        queueInterface.stopSearch()
     }
 }

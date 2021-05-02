@@ -15,13 +15,15 @@ import androidx.core.app.NotificationCompat
 import androidx.navigation.NavDeepLinkBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.pat.flerbi.QueueInfo.location
+import com.pat.flerbi.QueueInfo.nick
+import com.pat.flerbi.QueueInfo.roomNr
+import com.pat.flerbi.QueueInfo.searchSecurity
 import com.pat.flerbi.model.FirstUser
 import com.pat.flerbi.model.SecondUser
 import com.pat.flerbi.model.QueueData
 import com.pat.flerbi.view.main.MainActivity
 import com.pat.flerbi.view.main.QueueFragment
-import com.pat.flerbi.view.main.QueueFragment.Companion.roomNr
-import com.pat.flerbi.view.main.QueueFragment.Companion.searchSecurity
 
 
 class QueueService : Service() {
@@ -89,7 +91,7 @@ class QueueService : Service() {
     private fun queue() {
 
         val ref = FirebaseDatabase.getInstance().getReference("queue")
-            .child("${QueueFragment.location + QueueFragment.roomNr}")
+            .child("${location + roomNr}")
 
 
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -97,13 +99,13 @@ class QueueService : Service() {
                 if (snapshot.exists()) {
 
                     val ref2 = FirebaseDatabase.getInstance()
-                        .getReference("queue/${QueueFragment.location + QueueFragment.roomNr}/$uid")
+                        .getReference("queue/${location + roomNr}/$uid")
 
                     var count = snapshot.childrenCount.toInt()
 
                     if (count == 1) {
 
-                        ref2.setValue(SecondUser(QueueFragment.nick, uid, QueueFragment.location))
+                        ref2.setValue(SecondUser(nick, uid, location))
 
                         ref.addChildEventListener(object : ChildEventListener {
                             override fun onChildAdded(
@@ -124,7 +126,7 @@ class QueueService : Service() {
                                                 oppNick = dane?.username.toString()
                                                 val getKeyReference = FirebaseDatabase.getInstance()
                                                     .getReference("queue")
-                                                    .child("${QueueFragment.location + QueueFragment.roomNr}/$oppUid")
+                                                    .child("${location + roomNr}/$oppUid")
                                                     .child("roomKey")
                                                 getKeyReference.addListenerForSingleValueEvent(
                                                     object : ValueEventListener {
@@ -198,7 +200,7 @@ class QueueService : Service() {
                     }
 
                     if (count == 2) {
-                        QueueFragment.roomNr += 1
+                        roomNr += 1
                         return queue()
 
                     } else {
@@ -212,12 +214,12 @@ class QueueService : Service() {
                     roomKey = getKey()
 
                     val ref2 = FirebaseDatabase.getInstance()
-                        .getReference("queue/${QueueFragment.location + QueueFragment.roomNr}/$uid")
+                        .getReference("queue/${location + roomNr}/$uid")
                     ref2.setValue(
                         FirstUser(
-                            QueueFragment.nick,
+                            nick,
                             uid,
-                            QueueFragment.location,
+                            location,
                             roomKey
                         )
                     )
