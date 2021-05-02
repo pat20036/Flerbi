@@ -13,13 +13,15 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.pat.flerbi.R
 import com.pat.flerbi.databinding.FragmentTagsBinding
+import com.pat.flerbi.model.Tag
 import com.pat.flerbi.viewmodel.UserViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class TagsFragment : Fragment() {
     private lateinit var binding: FragmentTagsBinding
-    private val userViewModel by viewModel<UserViewModel>()
+    private val userViewModel by sharedViewModel<UserViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,14 +33,19 @@ class TagsFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         observeUserTags()
+
+        binding.editTagsButton.setOnClickListener()
+        {
+            findNavController().navigate(R.id.action_tagsFragment_to_allTagsFragment)
+        }
     }
 
     override fun onResume() {
         super.onResume()
-
         binding.myTagsChipGroup.removeAllViews()
         userViewModel.getProfileTags()
     }
+
 
     private fun observeUserTags() {
         userViewModel.profileTags.observe(viewLifecycleOwner, Observer {
@@ -48,14 +55,12 @@ class TagsFragment : Fragment() {
         })
     }
 
-    private fun showTags(myTags: List<String>) {
+    private fun showTags(myTags: List<Tag>) {
         val myTagsChipGroup = binding.myTagsChipGroup
-
-        binding.loadingTagsProgressBar.visibility =
-            View.GONE
+        binding.loadingTagsProgressBar.visibility = View.GONE
         for (i in myTags) {
             val chip = Chip(myTagsChipGroup.context)
-            chip.text = i
+            chip.text = i.name
             chip.setTextAppearance(R.style.CustomChipStyle)
             myTagsChipGroup.addView(chip)
         }

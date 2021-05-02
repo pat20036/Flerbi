@@ -1,10 +1,7 @@
 package com.pat.flerbi.di
 
 import com.pat.flerbi.*
-import com.pat.flerbi.interfaces.DatabaseChatRepositoryInterface
-import com.pat.flerbi.interfaces.DatabaseChatRepositoryInterfaceImpl
-import com.pat.flerbi.interfaces.QueueInterface
-import com.pat.flerbi.interfaces.QueueInterfaceImpl
+import com.pat.flerbi.interfaces.*
 import com.pat.flerbi.viewmodel.AuthViewModel
 import com.pat.flerbi.viewmodel.ChatViewModel
 import com.pat.flerbi.viewmodel.QueueViewModel

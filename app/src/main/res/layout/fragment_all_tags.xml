@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat"
-                android:text="Wybierz zainteresowania"
+                android:text="@string/select_tags"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -49,10 +49,10 @@
                 android:layout_marginLeft="16dp"
                 android:padding="4dp"
                 android:src="@drawable/close_24px"
-                android:tint="#FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="#FFFFFF" />
 
             <ImageView
                 android:id="@+id/saveTagsButton"
@@ -62,10 +62,10 @@
                 android:layout_marginRight="16dp"
                 android:padding="4dp"
                 android:src="@drawable/save_24px"
-                android:tint="#FFFFFF"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="#FFFFFF" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -105,7 +105,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Sport"
+                    android:text="@string/sport"
                     android:textAppearance="@style/CustomChipStyle" />
 
                 <com.google.android.material.chip.Chip
@@ -113,7 +113,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Gry"
+                    android:text="@string/games"
                     android:textAppearance="@style/CustomChipStyle" />
 
                 <com.google.android.material.chip.Chip
@@ -121,7 +121,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Filmy i Seriale"
+                    android:text="@string/movies"
                     android:textAppearance="@style/CustomChipStyle" />
 
                 <com.google.android.material.chip.Chip
@@ -129,7 +129,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Technologie"
+                    android:text="@string/technology"
                     android:textAppearance="@style/CustomChipStyle" />
 
                 <com.google.android.material.chip.Chip
@@ -137,7 +137,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Fotografia"
+                    android:text="@string/photography"
                     android:textAppearance="@style/CustomChipStyle" />
 
                 <com.google.android.material.chip.Chip
@@ -145,7 +145,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Makijaż"
+                    android:text="@string/make_up"
                     android:textAppearance="@style/CustomChipStyle" />
 
                 <com.google.android.material.chip.Chip
@@ -153,7 +153,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Muzyka"
+                    android:text="@string/music"
                     android:textAppearance="@style/CustomChipStyle" />
 
                 <com.google.android.material.chip.Chip
@@ -161,7 +161,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Społeczności"
+                    android:text="@string/socials"
                     android:textAppearance="@style/CustomChipStyle" />
 
                 <com.google.android.material.chip.Chip
@@ -169,7 +169,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Motoryzacja"
+                    android:text="@string/automotive"
                     android:textAppearance="@style/CustomChipStyle" />
 
                 <com.google.android.material.chip.Chip
@@ -177,7 +177,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Sztuka"
+                    android:text="@string/art"
                     android:textAppearance="@style/CustomChipStyle" />
 
                 <com.google.android.material.chip.Chip
@@ -185,7 +185,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Astronomia"
+                    android:text="@string/astronomy"
                     android:textAppearance="@style/CustomChipStyle" />
 
                 <com.google.android.material.chip.Chip
@@ -193,7 +193,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Informatyka"
+                    android:text="@string/it"
                     android:textAppearance="@style/CustomChipStyle" />
 
                 <com.google.android.material.chip.Chip
@@ -201,7 +201,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Nauka"
+                    android:text="@string/science"
                     android:textAppearance="@style/CustomChipStyle" />
 
                 <com.google.android.material.chip.Chip
@@ -209,7 +209,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Moda"
+                    android:text="@string/fashion"
                     android:textAppearance="@style/CustomChipStyle" />
 
                 <com.google.android.material.chip.Chip
@@ -217,7 +217,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
-                    android:text="Taniec"
+                    android:text="@string/dance"
                     android:textAppearance="@style/CustomChipStyle" />
 
             </com.google.android.material.chip.ChipGroup>

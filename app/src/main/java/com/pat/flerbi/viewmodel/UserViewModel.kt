@@ -3,6 +3,7 @@ package com.pat.flerbi.viewmodel
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -11,7 +12,8 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.pat.flerbi.OnlineOfflineInterface
 import com.pat.flerbi.SharedPreferencesInterface
-import com.pat.flerbi.UserInterface
+import com.pat.flerbi.interfaces.UserInterface
+import com.pat.flerbi.model.Tag
 
 class UserViewModel(
     private val userInterface: UserInterface,
@@ -19,7 +21,6 @@ class UserViewModel(
     private val databaseInterface: OnlineOfflineInterface
 ) : ViewModel() {
 
-    private val uid = FirebaseAuth.getInstance().uid
     private val _isUserActive = MutableLiveData<Boolean>()
     val isUserActive: LiveData<Boolean> get() = _isUserActive
 
@@ -38,8 +39,8 @@ class UserViewModel(
     private val _usersCount = MutableLiveData<String>()
     val usersCount: LiveData<String> get() = _usersCount
 
-    private val _profileTags = MutableLiveData<List<String>>()
-    val profileTags: LiveData<List<String>> get() = _profileTags
+    private val _profileTags = MutableLiveData<List<Tag>>()
+    val profileTags: LiveData<List<Tag>> get() = _profileTags
 
     private val _userEmail = MutableLiveData<String>()
     val userEmail: LiveData<String> get() = _userEmail
@@ -52,126 +53,55 @@ class UserViewModel(
         _usersCount.value = sharedPreferencesInterface.getActiveUsersCount()
     }
 
-    fun getUserEmail()
-    {
-       _userEmail.value = userInterface.getUserEmail()
+    fun getUserEmail() {
+        _userEmail.value = userInterface.getUserEmail()
     }
 
     fun addToActiveUsers() {
         databaseInterface.addToActiveUsers()
     }
-    fun removeFromActiveUsers()
-    {
+
+    fun removeFromActiveUsers() {
         databaseInterface.removeFromActiveUsers()
     }
 
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     fun isUserActive() {
-        _isUserActive.value = false
-        val database = FirebaseDatabase.getInstance().getReference("TestConnection")
-        database.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                _isUserActive.value = true
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                _isUserActive.value = false
-            }
-
+        userInterface.isUserActive().observeForever(Observer {
+            _isUserActive.value = it
         })
     }
 
     fun getProfilePoints() {
-
-        val databaseReferenceProfilePoints =
-            FirebaseDatabase.getInstance().getReference("registered-users/$uid/points")
-        databaseReferenceProfilePoints.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-
-                _profilePoints.value = snapshot.value.toString()
-                Log.d("PKT", profilePoints.value.toString())
-
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-
-            }
+        userInterface.getProfilePoints().observeForever(Observer {
+            _profilePoints.value = it
         })
+    }
 
+
+    fun getProfileAchievements() {
+        userInterface.getProfileAchievements().observeForever(Observer {
+            _profileAchievements.value = it
+        })
     }
 
     fun getProfileRecommends() {
-        val databaseReferenceProfilePoints =
-            FirebaseDatabase.getInstance().getReference("registered-users/$uid/recommends")
-        databaseReferenceProfilePoints.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-
-                _profileRecommends.value = snapshot.value.toString()
-                Log.d("PKT", profilePoints.value.toString())
-
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-
-            }
+        userInterface.getProfileRecommends().observeForever(Observer {
+            _profileRecommends.value = it
         })
-
-    }
-
-    fun getProfileAchievements() {
-        val uid = FirebaseAuth.getInstance().uid
-        val databaseReferenceProfilePoints =
-            FirebaseDatabase.getInstance().getReference("registered-users/$uid/achievements")
-        databaseReferenceProfilePoints.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-
-                _profileAchievements.value = snapshot.value.toString()
-                Log.d("PKT", profilePoints.value.toString())
-
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-        })
-
     }
 
 
     fun getProfileTags() {
-
-        val uid = FirebaseAuth.getInstance().uid
-        val myTags = mutableListOf<String>()
-        val ref = FirebaseDatabase.getInstance().getReference("user-tags/$uid/tags")
-        ref.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val count = snapshot.childrenCount
-                if (count == 0L) {
-                    _profileTags.value = emptyList()
-                }
-                for (i in 0 until count) {
-                    val databaseReference =
-                        FirebaseDatabase.getInstance().getReference("user-tags/$uid/tags/$i")
-                    databaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
-                        override fun onDataChange(snapshot: DataSnapshot) {
-                            val dane = snapshot.value.toString()
-                            myTags.clear()
-                            myTags.add(dane)
-                            _profileTags.value = myTags
-                        }
-
-                        override fun onCancelled(error: DatabaseError) {
-
-                        }
-                    })
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-            }
+        userInterface.getProfileTags().observeForever(Observer {
+            _profileTags.value = it
         })
 
+    }
+
+    fun saveUserTags(tags: List<String>) {
+        userInterface.saveUserTags(tags)
     }
 
 

@@ -25,11 +25,14 @@ interface AuthRegisterInterface {
     fun addNicknameToDatabase(nickname: String)
     fun registerUser(email: String, password: String, nickname: String)
     fun addUserToDatabase(nickname: String)
+
 }
 
 class AuthRegisterInterfaceImpl(private val context: Context) : AuthRegisterInterface {
     private val sharedPreferences =
         context.getSharedPreferences("shared_preferences", Context.MODE_PRIVATE)
+
+
 
     override fun dataValidator(
         email: String,
