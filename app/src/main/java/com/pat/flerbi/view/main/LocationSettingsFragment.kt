@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.pat.flerbi.R
 import com.pat.flerbi.databinding.FragmentLocationSettingsBinding
@@ -36,11 +37,14 @@ class LocationSettingsFragment : Fragment() {
             userViewModel.setFavoriteLocation(location)
             Snackbar.make(requireView(), "Saved!", Snackbar.LENGTH_SHORT).show()
         }
+        binding.locationSettingBackArrow.setOnClickListener()
+        {
+            findNavController().popBackStack()
+        }
 
     }
 
-    private fun observeFavoriteLocation()
-    {
+    private fun observeFavoriteLocation() {
         userViewModel.userFavoriteLocation.observe(viewLifecycleOwner, Observer {
             binding.favoriteLocationEditText.setText(it)
         })

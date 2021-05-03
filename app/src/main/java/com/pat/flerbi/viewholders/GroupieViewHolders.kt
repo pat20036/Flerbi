@@ -5,12 +5,10 @@ import com.pat.flerbi.R
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
 
-class MsgToViewHolder(val text: String, val nick: String) : Item<GroupieViewHolder>() {
+class MsgToViewHolder(val text: String) : Item<GroupieViewHolder>() {
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
-
         viewHolder.itemView.findViewById<TextView>(R.id.msg_to).text = text
-        //val text=  viewHolder.itemView.findViewById<TextView>(R.id.username_msg_to)
-        //  text.text = nick
+
     }
 
     override fun getLayout(): Int {
@@ -19,10 +17,10 @@ class MsgToViewHolder(val text: String, val nick: String) : Item<GroupieViewHold
     }
 }
 
-class MsgToMeViewHolder(val text: String, val nick: String) : Item<GroupieViewHolder>() {
+class MsgToMeViewHolder(val text: String) : Item<GroupieViewHolder>() {
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
         viewHolder.itemView.findViewById<TextView>(R.id.msg_to_me).text = text
-        //viewHolder.itemView.findViewById<TextView>(R.id.username_msg_to_me).text = nick
+
     }
 
     override fun getLayout(): Int {

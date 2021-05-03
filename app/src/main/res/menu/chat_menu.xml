@@ -3,15 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/userTagsItem"
-        android:title="Tagi"
+        android:icon="@drawable/loyalty_24px"
+        android:title="@string/tags"
         app:showAsAction="always" />
     <item
         android:id="@+id/recommendUserItem"
-        android:title="Zarekomenduj" />
+        android:title="@string/recommend" />
     <item
         android:id="@+id/reportUserItem"
-        android:title="Zgłoś użytkownika" />
+        android:title="@string/report_user" />
     <item
         android:id="@+id/end"
-        android:title="Zakończ" />
+        android:title="@string/end" />
 </menu>

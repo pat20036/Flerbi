@@ -7,11 +7,13 @@ import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.pat.flerbi.model.Report
 import com.pat.flerbi.model.UserMessage
 
 interface DatabaseChatRepositoryInterface {
     fun sendMessage(msg: String, roomKey: String, fromId: String, toId: String)
     fun getMessages(roomKey: String, fromId: String, toId: String): LiveData<UserMessage>
+    fun reportUser(reportSecure: Int, roomKey: String, matchUid: String):LiveData<String>
 
 }
 
@@ -60,5 +62,20 @@ class DatabaseChatRepositoryInterfaceImpl : DatabaseChatRepositoryInterface {
 
         })
         return chatMessage
+    }
+
+    override fun reportUser(reportSecure:Int ,roomKey: String, matchUid: String): LiveData<String> {
+        val infoLiveData = MutableLiveData<String>()
+        val uid = FirebaseAuth.getInstance().currentUser?.uid!!
+        if(reportSecure == 0)
+        {
+            val ref = FirebaseDatabase.getInstance().getReference("reported-users/$roomKey").push()
+            ref.setValue(Report(matchUid, uid)).addOnCompleteListener {
+                infoLiveData.value = "Reported"
+            }
+        }
+        else infoLiveData.value = "User has already been reported"
+
+        return infoLiveData
     }
 }

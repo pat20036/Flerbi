@@ -2,9 +2,15 @@ package com.pat.flerbi.view.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
+import com.pat.flerbi.R
 import com.pat.flerbi.databinding.ActivityChatBinding
 import com.pat.flerbi.viewholders.MsgToMeViewHolder
 import com.pat.flerbi.viewholders.MsgToViewHolder
@@ -30,6 +36,8 @@ class ChatActivity : AppCompatActivity() {
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setSupportActionBar(binding.toolbar)
+        binding.toolbar.title = null
         matchUid = intent.getStringExtra("OPP_UID").toString()
         matchNick = intent.getStringExtra("OPP_USERNAME").toString()
         roomKey = intent.getStringExtra("ROOM_KEY").toString()
@@ -38,8 +46,8 @@ class ChatActivity : AppCompatActivity() {
         binding.recyclerViewChat.adapter = adapter
 
         observeMessages()
+        observeReportError()
         chatViewModel.getMessages(roomKey, uid!!, matchUid)
-
 
         binding.sendMessageButton.setOnClickListener()
         {
@@ -49,10 +57,54 @@ class ChatActivity : AppCompatActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.chat_menu, menu)
+        return true
+    }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle item selection
+        return when (item.itemId) {
+            R.id.reportUserItem -> {
+               chatViewModel.reportUser(reportSecure, roomKey, matchUid)
+                reportSecure = 1
+                true
+            }
+            R.id.recommendUserItem ->
+            {
+                //recommendUser()
+                recommendSecure = 1
+                true
+            }
+            R.id.userTagsItem -> {
+
+                //val bottomSheet = ChatTagsBottomSheet()
+               // bottomSheet.show(supportFragmentManager, "Tag")
+                true
+            }
+            R.id.end -> {
+                finish()
+                true
+
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+
     private fun observeMessages() {
         chatViewModel.chatMessages.observe(this, Observer {
-            if (it.fromID == uid) adapter.add(MsgToViewHolder(it.msg, "Nick"))
-            else adapter.add(MsgToMeViewHolder(it.msg, "Nick"))
+            if (it.fromID == uid) adapter.add(MsgToViewHolder(it.msg))
+            else adapter.add(MsgToMeViewHolder(it.msg))
         })
+    }
+
+    private fun observeReportError()
+    {
+     chatViewModel.reportUserError.observe(this, Observer {
+         Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+     })
     }
 }

@@ -42,7 +42,6 @@
     <string name="prizes_soon">Prizes (soon)</string>
     <string name="logout">Logout</string>
     <string name="dark_theme">Dark theme</string>
-    <string name="tags">Tags</string>
     <string name="sport">Sport</string>
     <string name="games">Games</string>
     <string name="movies">Movies</string>
@@ -64,4 +63,8 @@
     <string name="save">Save</string>
     <string name="automatically_type_favorite_location_to_location_field">Automatically type favorite location to location field.</string>
     <string name="the_favorite_location_appears_on_the_main_screen_and_can_be_used_to_automatically_enter_it_into_the_location_field">The favorite location appears on the main screen and can be used to automatically enter it into the location field.</string>
+    <string name="tags">Tags</string>
+    <string name="recommend">Recommend</string>
+    <string name="report_user">Report User</string>
+    <string name="end">End</string>
 </resources>
