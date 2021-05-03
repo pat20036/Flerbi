@@ -7,74 +7,43 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import com.google.android.material.snackbar.Snackbar
 import com.pat.flerbi.R
+import com.pat.flerbi.databinding.FragmentLocationSettingsBinding
+import com.pat.flerbi.viewmodel.UserViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
 class LocationSettingsFragment : Fragment() {
+    private lateinit var binding: FragmentLocationSettingsBinding
+    private val userViewModel by sharedViewModel<UserViewModel>()
 
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentLocationSettingsBinding.inflate(layoutInflater)
+        return binding.root
+    }
 
     override fun onStart() {
         super.onStart()
-        readFavoriteLocation()
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-       val view =  inflater.inflate(R.layout.fragment_location_settings, container, false)
-
-        val fav_location_bt = view?.findViewById<Button>(R.id.assignLocationButton)
-
-        fav_location_bt?.setOnClickListener()
+        observeFavoriteLocation()
+        binding.assignLocationButton.setOnClickListener()
         {
-            val favLocation = view.findViewById<EditText>(R.id.favoriteLocationEditText)?.text.toString()
-            val favLocationCb = view.findViewById<CheckBox>(R.id.favoriteLocationCheckBox)
-            var favLocationCbStatus = false
-
-            if(favLocationCb.isChecked)
-            {
-             favLocationCbStatus= true
-            }
-
-
-            if(favLocation.length in 1..2)
-            {
-                Toast.makeText(activity?.applicationContext, "Błąd", Toast.LENGTH_SHORT).show()
-            }
-
-            else
-            {
-                val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity?.applicationContext)
-                val sharedPreferencesEditor = sharedPreferences.edit()
-                sharedPreferencesEditor.putString("fav_location", favLocation)
-                sharedPreferencesEditor.putBoolean("fav_location_cb", favLocationCbStatus)
-                sharedPreferencesEditor.apply()
-                readFavoriteLocation()
-                Toast.makeText(activity?.applicationContext, "Zapisano", Toast.LENGTH_SHORT).show()
-
-            }
-
+            val location = binding.favoriteLocationEditText.text.toString()
+            userViewModel.setFavoriteLocation(location)
+            Snackbar.make(requireView(), "Saved!", Snackbar.LENGTH_SHORT).show()
         }
 
-        return view
     }
 
-    private fun readFavoriteLocation()
+    private fun observeFavoriteLocation()
     {
-        val favLocationCb = view?.findViewById<CheckBox>(R.id.favoriteLocationCheckBox)
-        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity?.applicationContext)
-        val favLocation  = sharedPreferences.getString("fav_location", "")
-        val favLocationCbStatus = sharedPreferences.getBoolean("fav_location_cb", false)
-
-        if(favLocationCbStatus == true)
-        {
-         favLocationCb?.isChecked = true
-        }
-        view?.findViewById<TextView>(R.id.favoriteLocationEditText)?.text = "$favLocation"
-
-
+        userViewModel.userFavoriteLocation.observe(viewLifecycleOwner, Observer {
+            binding.favoriteLocationEditText.setText(it)
+        })
     }
 
-
-
-    }
+}

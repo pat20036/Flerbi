@@ -43,6 +43,9 @@ class UserViewModel(
     private val _userLastLocation = MutableLiveData<String>()
     val userLastLocation: LiveData<String> get() = _userLastLocation
 
+    private val _userFavoriteLocation = MutableLiveData<String>()
+    val userFavoriteLocation: LiveData<String> get() = _userFavoriteLocation
+
 
     fun getUserNickname() {
         _userNickname.value = sharedPreferencesInterface.getUserNickname()
@@ -71,6 +74,15 @@ class UserViewModel(
     fun getLastLocation()
     {
         _userLastLocation.value = sharedPreferencesInterface.getLastLocation()
+    }
+
+    fun setFavoriteLocation(location: String) {
+        sharedPreferencesInterface.setFavoriteLocation(location)
+    }
+
+    fun getFavoriteLocation()
+    {
+        _userFavoriteLocation.value = sharedPreferencesInterface.getFavoriteLocation()
     }
 
     fun isUserActive() {

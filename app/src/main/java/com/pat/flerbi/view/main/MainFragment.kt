@@ -34,14 +34,16 @@ class MainFragment : Fragment() {
         userViewModel.getUserNickname()
         userViewModel.getActiveUsersCount()
         userViewModel.getLastLocation()
+        userViewModel.getFavoriteLocation()
 
         observeUserStats()
         observeUserStatus()
         observeActiveUsersCount()
         observeLastLocation()
+        observeFavoriteLocation()
 
-        binding.nicknameTextView.text =  userViewModel.userNickname.value
-        binding.statsNicknameTextView.text =  userViewModel.userNickname.value
+        binding.nicknameTextView.text = userViewModel.userNickname.value
+        binding.statsNicknameTextView.text = userViewModel.userNickname.value
 
         binding.favLocationItem.setOnClickListener()
         {
@@ -50,7 +52,10 @@ class MainFragment : Fragment() {
 
         binding.locationEditText.setOnClickListener()
         {
-            val extras = FragmentNavigatorExtras(binding.locationEditText to "search2", binding.locationCardView to "search")
+            val extras = FragmentNavigatorExtras(
+                binding.locationEditText to "search2",
+                binding.locationCardView to "search"
+            )
             findNavController().navigate(
                 R.id.action_mainFragment_to_queueFragment,
                 null,
@@ -60,8 +65,7 @@ class MainFragment : Fragment() {
         }
     }
 
-    private fun observeActiveUsersCount()
-    {
+    private fun observeActiveUsersCount() {
         userViewModel.usersCount.observe(viewLifecycleOwner, Observer {
             binding.activeUsersTextView.text = it
         })
@@ -89,10 +93,15 @@ class MainFragment : Fragment() {
         })
     }
 
-    private fun observeLastLocation()
-    {
+    private fun observeLastLocation() {
         userViewModel.userLastLocation.observe(viewLifecycleOwner, Observer {
             binding.lastLocationTextView.text = it
+        })
+    }
+
+    private fun observeFavoriteLocation() {
+        userViewModel.userFavoriteLocation.observe(viewLifecycleOwner, Observer {
+            binding.favLocationTextView.text = it
         })
     }
 

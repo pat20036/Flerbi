@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import com.google.android.material.snackbar.Snackbar
 import com.pat.flerbi.helpers.QueueInfo.location
 import com.pat.flerbi.helpers.QueueInfo.roomNr
 import com.pat.flerbi.databinding.FragmentQueueBinding
@@ -37,12 +39,17 @@ class QueueFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-
+        observeIsSearching()
+        observeFavoriteLocation()
         binding.searchButton.setOnClickListener()
         {
             location = binding.locationEditText.text.toString()
-            queueViewModel.startSearch()
             userViewModel.setLastLocation(location)
+            queueViewModel.startSearch()
+        }
+        binding.cancelButton.setOnClickListener()
+        {
+            queueViewModel.stopSearch()
         }
     }
 
@@ -50,7 +57,25 @@ class QueueFragment : Fragment() {
     override fun onPause() {
         super.onPause()
         queueViewModel.stopSearch()
-        queueViewModel.deleteQueueData(location, roomNr)
+    }
+
+    private fun observeIsSearching() {
+        queueViewModel.isSearching.observe(viewLifecycleOwner, Observer {
+            if (it) {
+                binding.searchLayout.visibility = View.VISIBLE
+                binding.searchButton.visibility = View.GONE
+            } else {
+                binding.searchLayout.visibility = View.GONE
+                binding.searchButton.visibility = View.VISIBLE
+            }
+        })
+    }
+
+    private fun observeFavoriteLocation()
+    {
+        userViewModel.userFavoriteLocation.observe(viewLifecycleOwner, Observer {
+            binding.locationEditText.setText(it)
+        })
     }
 
 

@@ -31,7 +31,7 @@ class UserInterfaceImpl(private val context: Context) : UserInterface {
     override fun logoutUser() {
         FirebaseAuth.getInstance().signOut()
         val intent = Intent(context.applicationContext, WelcomeActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         context.startActivity(intent)
 
     }

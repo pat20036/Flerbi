@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".main.TagsFragment">
+    android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -23,10 +22,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/montserrat"
-                android:text="Ustawienia lokalizacji"
+                android:text="@string/location_settings"
                 android:textColor="#000000"
                 android:textSize="30sp"
                 android:textStyle="bold"
@@ -49,7 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
-                android:text="Ułatwienia dostępu."
+                android:text="@string/change_your_settings"
                 app:layout_constraintStart_toStartOf="@+id/textView36"
                 app:layout_constraintTop_toBottomOf="@+id/textView36" />
 
@@ -58,7 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
-                android:text="Wybierz ulubioną lokalizację"
+                android:text="@string/type_favorite_location"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.068"
                 app:layout_constraintStart_toStartOf="parent"
@@ -80,9 +78,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
                 android:fontFamily="@font/montserrat"
-                android:text="Zapisz"
+                android:text="@string/save"
                 android:textAllCaps="false"
                 app:layout_constraintBottom_toBottomOf="@+id/favoriteLocationEditText"
                 app:layout_constraintStart_toEndOf="@+id/favoriteLocationEditText"
@@ -91,26 +88,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="12dp"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:text="Ulubiona lokalizacja pojawia się na profilu i może zostać użyta do automatycznego wprowadzenia jej do pola wyboru lokalizacji."
+                android:text="@string/the_favorite_location_appears_on_the_main_screen_and_can_be_used_to_automatically_enter_it_into_the_location_field"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/favoriteLocationCheckBox" />
-
-            <CheckBox
-                android:id="@+id/favoriteLocationCheckBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingRight="10dp"
-                android:text="Automatycznie wypełnij pole lokalizacji ulubioną lokalizacją."
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/favoriteLocationEditText"
                 app:layout_constraintTop_toBottomOf="@+id/favoriteLocationEditText" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

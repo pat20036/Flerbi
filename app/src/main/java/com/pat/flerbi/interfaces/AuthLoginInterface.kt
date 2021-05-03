@@ -39,8 +39,7 @@ class AuthLoginInterfaceImpl(private val context: Context) : AuthLoginInterface 
                 errorList.add(LoginError(1, "Password cannot be blank"))
                 errorLiveData.value = errorList
             }
-            if(password.length < 6)
-            {
+            if (password.length < 6) {
                 errorList.add(LoginError(2, "Incorrect password"))
                 errorLiveData.value = errorList
             }
@@ -67,8 +66,10 @@ class AuthLoginInterfaceImpl(private val context: Context) : AuthLoginInterface 
                                 if (it.isSuccessful) {
                                     val intent =
                                         Intent(context.applicationContext, MainActivity::class.java)
-                                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                                    intent.flags =
+                                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                     context.startActivity(intent)
+
                                 }
                             }
                         }
