@@ -1,4 +1,4 @@
-package com.pat.flerbi
+package com.pat.flerbi.helpers
 
 object QueueInfo {
     var location = ""

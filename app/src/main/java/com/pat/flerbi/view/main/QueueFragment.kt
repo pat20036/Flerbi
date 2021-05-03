@@ -1,27 +1,14 @@
 package com.pat.flerbi.view.main
 
 
-import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.os.Handler
 import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.TextView
-import androidx.annotation.RequiresApi
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
-import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
-import com.pat.flerbi.QueueInfo.location
-import com.pat.flerbi.QueueInfo.roomNr
-import com.pat.flerbi.QueueInfo.searchSecurity
-import com.pat.flerbi.QueueService
-import com.pat.flerbi.R
+import com.pat.flerbi.helpers.QueueInfo.location
+import com.pat.flerbi.helpers.QueueInfo.roomNr
 import com.pat.flerbi.databinding.FragmentQueueBinding
 import com.pat.flerbi.viewmodel.QueueViewModel
 import com.pat.flerbi.viewmodel.UserViewModel
@@ -32,6 +19,7 @@ class QueueFragment : Fragment() {
 
     private lateinit var binding: FragmentQueueBinding
     private val queueViewModel by sharedViewModel<QueueViewModel>()
+    private val userViewModel by sharedViewModel<UserViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedElementEnterTransition =
@@ -54,6 +42,7 @@ class QueueFragment : Fragment() {
         {
             location = binding.locationEditText.text.toString()
             queueViewModel.startSearch()
+            userViewModel.setLastLocation(location)
         }
     }
 

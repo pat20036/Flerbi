@@ -1,17 +1,12 @@
 package com.pat.flerbi.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.pat.flerbi.OnlineOfflineInterface
-import com.pat.flerbi.SharedPreferencesInterface
+import com.pat.flerbi.interfaces.SharedPreferencesInterface
 import com.pat.flerbi.interfaces.UserInterface
 import com.pat.flerbi.model.Tag
 
@@ -45,6 +40,10 @@ class UserViewModel(
     private val _userEmail = MutableLiveData<String>()
     val userEmail: LiveData<String> get() = _userEmail
 
+    private val _userLastLocation = MutableLiveData<String>()
+    val userLastLocation: LiveData<String> get() = _userLastLocation
+
+
     fun getUserNickname() {
         _userNickname.value = sharedPreferencesInterface.getUserNickname()
     }
@@ -65,8 +64,15 @@ class UserViewModel(
         databaseInterface.removeFromActiveUsers()
     }
 
+    fun setLastLocation(location: String) {
+        sharedPreferencesInterface.setLastLocation(location)
+    }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    fun getLastLocation()
+    {
+        _userLastLocation.value = sharedPreferencesInterface.getLastLocation()
+    }
+
     fun isUserActive() {
         userInterface.isUserActive().observeForever(Observer {
             _isUserActive.value = it
@@ -102,6 +108,11 @@ class UserViewModel(
 
     fun saveUserTags(tags: List<String>) {
         userInterface.saveUserTags(tags)
+    }
+
+    fun logoutUser()
+    {
+        userInterface.logoutUser()
     }
 
 

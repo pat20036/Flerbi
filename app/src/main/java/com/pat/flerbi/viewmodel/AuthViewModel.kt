@@ -1,15 +1,16 @@
 package com.pat.flerbi.viewmodel
 
-import android.widget.CheckBox
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
-import com.pat.flerbi.AuthLoginInterface
+import com.pat.flerbi.interfaces.AuthLoginInterface
 import com.pat.flerbi.AuthRegisterInterface
+import com.pat.flerbi.model.LoginError
 
 class AuthViewModel(private val authRegisterInterface: AuthRegisterInterface, private val authLoginInterface: AuthLoginInterface): ViewModel() {
-    private val _errorMessage = MutableLiveData<String>()
-    val errorMessage:LiveData<String> get() = _errorMessage
+    private val _loginErrorMessages = MutableLiveData<List<LoginError>>()
+    val loginErrorMessages:LiveData<List<LoginError>> get() = _loginErrorMessages
 
     fun registerUser(email:String, password:String, rePassword: String, nickname: String, touCheckBox: Boolean)
     {
@@ -18,8 +19,12 @@ class AuthViewModel(private val authRegisterInterface: AuthRegisterInterface, pr
 
     fun loginUser(email: String, password: String)
     {
-        authLoginInterface.dataValidator(email, password)
+        authLoginInterface.dataValidator(email, password).observeForever(Observer {
+            _loginErrorMessages.value = it
+        })
     }
+
+
 
 
 }

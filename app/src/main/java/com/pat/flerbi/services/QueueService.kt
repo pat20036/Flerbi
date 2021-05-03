@@ -1,4 +1,4 @@
-package com.pat.flerbi
+package com.pat.flerbi.services
 
 import android.app.Notification
 import android.app.NotificationChannel
@@ -15,15 +15,16 @@ import androidx.core.app.NotificationCompat
 import androidx.navigation.NavDeepLinkBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.pat.flerbi.QueueInfo.location
-import com.pat.flerbi.QueueInfo.nick
-import com.pat.flerbi.QueueInfo.roomNr
-import com.pat.flerbi.QueueInfo.searchSecurity
+import com.pat.flerbi.view.main.ChatActivity
+import com.pat.flerbi.R
+import com.pat.flerbi.helpers.QueueInfo.location
+import com.pat.flerbi.helpers.QueueInfo.nick
+import com.pat.flerbi.helpers.QueueInfo.roomNr
+import com.pat.flerbi.helpers.QueueInfo.searchSecurity
 import com.pat.flerbi.model.FirstUser
 import com.pat.flerbi.model.SecondUser
 import com.pat.flerbi.model.QueueData
 import com.pat.flerbi.view.main.MainActivity
-import com.pat.flerbi.view.main.QueueFragment
 
 
 class QueueService : Service() {
@@ -58,8 +59,8 @@ class QueueService : Service() {
             .createPendingIntent()
 
         val notification = notificationBuilder.setOngoing(true)
-            .setContentTitle("Wyszukiwanie aktywne")
-            .setContentText("Wyszukiwanie aktywne.")
+            .setContentTitle("Searching")
+            .setContentText("Searching active")
             .setSmallIcon(R.mipmap.ic_launcher)
             .setContentIntent(pendingIntent)
             .setPriority(NotificationCompat.PRIORITY_MIN)
@@ -91,7 +92,7 @@ class QueueService : Service() {
     private fun queue() {
 
         val ref = FirebaseDatabase.getInstance().getReference("queue")
-            .child("${location + roomNr}")
+            .child(location + roomNr)
 
 
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -101,7 +102,7 @@ class QueueService : Service() {
                     val ref2 = FirebaseDatabase.getInstance()
                         .getReference("queue/${location + roomNr}/$uid")
 
-                    var count = snapshot.childrenCount.toInt()
+                    val count = snapshot.childrenCount.toInt()
 
                     if (count == 1) {
 
@@ -158,7 +159,7 @@ class QueueService : Service() {
                                             val databaseReference = FirebaseDatabase.getInstance()
                                                 .getReference("queue/$roomNr/$uid")
                                             databaseReference.removeValue()
-                                            //roomNr = +1
+                                            //roomNr = +1 if you want to jump into next room/to fix
                                             return queue()
                                         }
 
@@ -169,7 +170,6 @@ class QueueService : Service() {
                                     }
 
                                 })
-
 
                             }
 
@@ -194,11 +194,8 @@ class QueueService : Service() {
                             override fun onCancelled(error: DatabaseError) {
                                 Log.d("Main", error.toString())
                             }
-
                         })
-
                     }
-
                     if (count == 2) {
                         roomNr += 1
                         return queue()
@@ -208,9 +205,7 @@ class QueueService : Service() {
                     }
 
                 } else {
-
                     // Don't exist! Do something.
-
                     roomKey = getKey()
 
                     val ref2 = FirebaseDatabase.getInstance()
@@ -262,6 +257,7 @@ class QueueService : Service() {
                                         return queue()
                                     }
                                 }
+
                                 override fun onCancelled(error: DatabaseError) {
 
                                 }
@@ -283,7 +279,6 @@ class QueueService : Service() {
                             snapshot: DataSnapshot,
                             previousChildName: String?
                         ) {
-
 
                         }
 
@@ -313,7 +308,6 @@ class QueueService : Service() {
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val count = snapshot.childrenCount
-                Log.d("ILE", count.toString())
 
                 for (i in 0 until count) {
                     val ref2 = FirebaseDatabase.getInstance()
@@ -322,8 +316,6 @@ class QueueService : Service() {
                         override fun onDataChange(snapshot: DataSnapshot) {
                             val dane = snapshot.value.toString()
                             matchTags.add(dane)
-                            Log.d("tagi", matchTags[i.toInt()])
-
                         }
 
                         override fun onCancelled(error: DatabaseError) {

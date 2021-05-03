@@ -1,17 +1,22 @@
-package com.pat.flerbi
+package com.pat.flerbi.interfaces
 
 import android.content.Context
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.pat.flerbi.R
 
 interface SharedPreferencesInterface {
     fun getUserNickname(): String
     fun getActiveUsersCount(): String
+    fun setFavoriteLocation(location: String)
+    fun getFavoriteLocation():String
+    fun setLastLocation(location:String)
+    fun getLastLocation():String
 }
 
-class SharedPreferencesInterfaceImpl(context: Context) : SharedPreferencesInterface {
+class SharedPreferencesInterfaceImpl(private val context: Context) : SharedPreferencesInterface {
     private val sharedPreferences =
         context.getSharedPreferences("shared_preferences", Context.MODE_PRIVATE)
 
@@ -31,6 +36,20 @@ class SharedPreferencesInterfaceImpl(context: Context) : SharedPreferencesInterf
         })
         return sharedPreferences.getString("active_users", "0")!!
     }
+
+    override fun setFavoriteLocation(location:String) {
+        sharedPreferences.edit().putString("favorite_location", location).apply()
+    }
+
+    override fun getFavoriteLocation(): String = sharedPreferences.getString("favorite_location", context.getString(R.string.empty))!!
+
+    override fun setLastLocation(location:String) {
+        sharedPreferences.edit().putString("last_location", location).apply()
+    }
+
+    override fun getLastLocation(): String =  sharedPreferences.getString("last_location", context.getString(R.string.empty))!!
+
+
 
 
 }

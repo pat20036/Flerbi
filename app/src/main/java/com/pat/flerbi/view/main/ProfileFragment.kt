@@ -28,6 +28,12 @@ class ProfileFragment : Fragment() {
         userViewModel.getUserEmail()
         binding.nicknameProfileTextView.text = userViewModel.userNickname.value
         binding.emailProfileTextView.text = userViewModel.userEmail.value
+        binding.logoutButton.setOnClickListener()
+        {
+            userViewModel.logoutUser()
+        }
     }
+
+
 
 }

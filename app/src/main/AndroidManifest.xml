@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Flerbi">
-        <activity android:name=".ChatActivity"></activity>
+        <activity android:name=".view.main.ChatActivity"></activity>
         <activity android:name=".view.main.MainActivity" />
         <activity android:name=".view.auth.WelcomeActivity">
             <intent-filter>
@@ -22,7 +22,7 @@
         </activity>
 
         <service
-            android:name=".QueueService"
+            android:name=".services.QueueService"
             android:exported="false" />
 
         <meta-data

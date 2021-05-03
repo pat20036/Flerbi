@@ -33,12 +33,20 @@ class MainFragment : Fragment() {
         userViewModel.getProfileRecommends()
         userViewModel.getUserNickname()
         userViewModel.getActiveUsersCount()
+        userViewModel.getLastLocation()
+
         observeUserStats()
         observeUserStatus()
         observeActiveUsersCount()
+        observeLastLocation()
 
         binding.nicknameTextView.text =  userViewModel.userNickname.value
         binding.statsNicknameTextView.text =  userViewModel.userNickname.value
+
+        binding.favLocationItem.setOnClickListener()
+        {
+            findNavController().navigate(R.id.action_mainFragment_to_locationSettingsFragment)
+        }
 
         binding.locationEditText.setOnClickListener()
         {
@@ -78,6 +86,13 @@ class MainFragment : Fragment() {
 
         userViewModel.profileAchievements.observe(viewLifecycleOwner, Observer {
             binding.accountAchivementsTextView.text = it
+        })
+    }
+
+    private fun observeLastLocation()
+    {
+        userViewModel.userLastLocation.observe(viewLifecycleOwner, Observer {
+            binding.lastLocationTextView.text = it
         })
     }
 

@@ -1,4 +1,4 @@
-package com.pat.flerbi
+package com.pat.flerbi.view.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

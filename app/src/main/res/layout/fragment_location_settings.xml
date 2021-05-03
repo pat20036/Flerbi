@@ -65,7 +65,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageView10" />
 
             <EditText
-                android:id="@+id/favorite_location_edittext"
+                android:id="@+id/favoriteLocationEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
@@ -76,7 +76,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView39" />
 
             <Button
-                android:id="@+id/favorite_button"
+                android:id="@+id/assignLocationButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -84,9 +84,9 @@
                 android:fontFamily="@font/montserrat"
                 android:text="Zapisz"
                 android:textAllCaps="false"
-                app:layout_constraintBottom_toBottomOf="@+id/favorite_location_edittext"
-                app:layout_constraintStart_toEndOf="@+id/favorite_location_edittext"
-                app:layout_constraintTop_toTopOf="@+id/favorite_location_edittext" />
+                app:layout_constraintBottom_toBottomOf="@+id/favoriteLocationEditText"
+                app:layout_constraintStart_toEndOf="@+id/favoriteLocationEditText"
+                app:layout_constraintTop_toTopOf="@+id/favoriteLocationEditText" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -99,10 +99,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/auto_fav_location_checkbox" />
+                app:layout_constraintTop_toBottomOf="@+id/favoriteLocationCheckBox" />
 
             <CheckBox
-                android:id="@+id/auto_fav_location_checkbox"
+                android:id="@+id/favoriteLocationCheckBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingRight="10dp"
@@ -110,8 +110,8 @@
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/favorite_location_edittext"
-                app:layout_constraintTop_toBottomOf="@+id/favorite_location_edittext" />
+                app:layout_constraintStart_toStartOf="@+id/favoriteLocationEditText"
+                app:layout_constraintTop_toBottomOf="@+id/favoriteLocationEditText" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

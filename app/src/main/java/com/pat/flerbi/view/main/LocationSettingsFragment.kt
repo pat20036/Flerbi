@@ -23,12 +23,12 @@ class LocationSettingsFragment : Fragment() {
         // Inflate the layout for this fragment
        val view =  inflater.inflate(R.layout.fragment_location_settings, container, false)
 
-        val fav_location_bt = view?.findViewById<Button>(R.id.favorite_button)
+        val fav_location_bt = view?.findViewById<Button>(R.id.assignLocationButton)
 
         fav_location_bt?.setOnClickListener()
         {
-            val favLocation = view.findViewById<EditText>(R.id.favorite_location_edittext)?.text.toString()
-            val favLocationCb = view.findViewById<CheckBox>(R.id.auto_fav_location_checkbox)
+            val favLocation = view.findViewById<EditText>(R.id.favoriteLocationEditText)?.text.toString()
+            val favLocationCb = view.findViewById<CheckBox>(R.id.favoriteLocationCheckBox)
             var favLocationCbStatus = false
 
             if(favLocationCb.isChecked)
@@ -61,7 +61,7 @@ class LocationSettingsFragment : Fragment() {
 
     private fun readFavoriteLocation()
     {
-        val favLocationCb = view?.findViewById<CheckBox>(R.id.auto_fav_location_checkbox)
+        val favLocationCb = view?.findViewById<CheckBox>(R.id.favoriteLocationCheckBox)
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity?.applicationContext)
         val favLocation  = sharedPreferences.getString("fav_location", "")
         val favLocationCbStatus = sharedPreferences.getBoolean("fav_location_cb", false)
@@ -70,7 +70,7 @@ class LocationSettingsFragment : Fragment() {
         {
          favLocationCb?.isChecked = true
         }
-        view?.findViewById<TextView>(R.id.favorite_location_edittext)?.text = "$favLocation"
+        view?.findViewById<TextView>(R.id.favoriteLocationEditText)?.text = "$favLocation"
 
 
     }
