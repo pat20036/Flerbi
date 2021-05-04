@@ -103,7 +103,9 @@ class MainFragment : Fragment() {
 
     private fun observeFavoriteLocation() {
         userViewModel.userFavoriteLocation.observe(viewLifecycleOwner, Observer {
-            binding.favLocationTextView.text = it
+            if(it == "") binding.favLocationTextView.text = getString(R.string.empty)
+            else binding.favLocationTextView.text = it
+
         })
     }
 

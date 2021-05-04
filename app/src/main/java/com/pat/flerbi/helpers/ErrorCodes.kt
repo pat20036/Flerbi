@@ -10,3 +10,8 @@ package com.pat.flerbi.helpers
 //5 - user not found
 
 //////////////////////////////////REGISTER////////////////////////////////////
+
+//0 - Passwords do not match
+//1 - Terms of use
+//2 - Nickname taken
+//3 - E-mail taken

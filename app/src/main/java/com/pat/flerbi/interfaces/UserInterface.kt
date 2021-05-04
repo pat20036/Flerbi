@@ -16,29 +16,32 @@ import com.pat.flerbi.view.auth.WelcomeActivity
 interface UserInterface {
     fun getUserEmail(): String
     fun logoutUser()
-    fun saveUserTags(tags: List<String>):LiveData<String>
+    fun saveUserTags(tags: List<String>): LiveData<String>
     fun getProfilePoints(): LiveData<String>
     fun getProfileAchievements(): LiveData<String>
-    fun getProfileRecommends():LiveData<String>
-    fun isUserActive():LiveData<Boolean>
-    fun getProfileTags():LiveData<List<Tag>>
+    fun getProfileRecommends(): LiveData<String>
+    fun isUserActive(): LiveData<Boolean>
+    fun getProfileTags(): LiveData<List<Tag>>
 
 }
 
 class UserInterfaceImpl(private val context: Context) : UserInterface {
-    private val uid = FirebaseAuth.getInstance().uid!!
     override fun getUserEmail(): String = FirebaseAuth.getInstance().currentUser.email
 
     override fun logoutUser() {
+        val sharedPreferences =
+            context.getSharedPreferences("shared_preferences", Context.MODE_PRIVATE)
         FirebaseAuth.getInstance().signOut()
+        sharedPreferences.edit().clear().apply()
         val intent = Intent(context.applicationContext, WelcomeActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         context.startActivity(intent)
 
     }
 
-    override fun saveUserTags(tags: List<String>):LiveData<String> {
+    override fun saveUserTags(tags: List<String>): LiveData<String> {
         val infoLiveData = MutableLiveData<String>()
+        val uid = FirebaseAuth.getInstance().uid
         val ref = FirebaseDatabase.getInstance().getReference("user-tags/$uid/tags")
         ref.setValue(tags).addOnCompleteListener {
             infoLiveData.value = "Saved!"
@@ -49,6 +52,7 @@ class UserInterfaceImpl(private val context: Context) : UserInterface {
 
     override fun getProfilePoints(): LiveData<String> {
         val profilePoints = MutableLiveData<String>()
+        val uid = FirebaseAuth.getInstance().uid
         val databaseReferenceProfilePoints =
             FirebaseDatabase.getInstance().getReference("registered-users/$uid/points")
         databaseReferenceProfilePoints.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -83,6 +87,7 @@ class UserInterfaceImpl(private val context: Context) : UserInterface {
 
     override fun getProfileRecommends(): LiveData<String> {
         val profileRecommends = MutableLiveData<String>()
+        val uid = FirebaseAuth.getInstance().uid
         val databaseReferenceProfilePoints =
             FirebaseDatabase.getInstance().getReference("registered-users/$uid/recommends")
         databaseReferenceProfilePoints.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -116,6 +121,7 @@ class UserInterfaceImpl(private val context: Context) : UserInterface {
     override fun getProfileTags(): LiveData<List<Tag>> {
         val myTagsLiveData = MutableLiveData<List<Tag>>()
         val myTags = mutableListOf<Tag>()
+        val uid = FirebaseAuth.getInstance().uid
         val ref = FirebaseDatabase.getInstance().getReference("user-tags/$uid/tags")
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -144,9 +150,8 @@ class UserInterfaceImpl(private val context: Context) : UserInterface {
             override fun onCancelled(error: DatabaseError) {
             }
         })
-    return myTagsLiveData
+        return myTagsLiveData
     }
-
 
 
 }

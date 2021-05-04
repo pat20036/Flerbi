@@ -41,7 +41,7 @@ class SharedPreferencesInterfaceImpl(private val context: Context) : SharedPrefe
         sharedPreferences.edit().putString("favorite_location", location).apply()
     }
 
-    override fun getFavoriteLocation(): String = sharedPreferences.getString("favorite_location", context.getString(R.string.empty))!!
+    override fun getFavoriteLocation(): String = sharedPreferences.getString("favorite_location", "")!!
 
     override fun setLastLocation(location:String) {
         sharedPreferences.edit().putString("last_location", location).apply()

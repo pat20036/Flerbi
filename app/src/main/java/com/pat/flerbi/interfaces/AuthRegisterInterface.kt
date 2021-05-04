@@ -3,13 +3,17 @@ package com.pat.flerbi.interfaces
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.pat.flerbi.model.LoginError
 import com.pat.flerbi.model.RegisterData
+import com.pat.flerbi.model.RegisterError
 import com.pat.flerbi.view.main.MainActivity
 
 interface AuthRegisterInterface {
@@ -19,8 +23,9 @@ interface AuthRegisterInterface {
         rePassword: String,
         nickname: String,
         touCheckBox: Boolean
-    )
-    fun isNicknameFree(email: String,password: String, nickname: String)
+    ): LiveData<List<RegisterError>>
+
+    fun isNicknameFree(email: String, password: String, nickname: String)
     fun addNicknameToDatabase(nickname: String)
     fun registerUser(email: String, password: String, nickname: String)
     fun addUserToDatabase(nickname: String)
@@ -30,8 +35,8 @@ interface AuthRegisterInterface {
 class AuthRegisterInterfaceImpl(private val context: Context) : AuthRegisterInterface {
     private val sharedPreferences =
         context.getSharedPreferences("shared_preferences", Context.MODE_PRIVATE)
-
-
+    private val errorLiveData = MutableLiveData<List<RegisterError>>()
+    private val errorList = mutableListOf<RegisterError>()
 
     override fun dataValidator(
         email: String,
@@ -39,21 +44,24 @@ class AuthRegisterInterfaceImpl(private val context: Context) : AuthRegisterInte
         rePassword: String,
         nickname: String,
         touCheckBox: Boolean
-    ) {
+    ): LiveData<List<RegisterError>> {
+        errorList.clear()
         if (email.isBlank() || password.isBlank() || password.length < 6 || password != rePassword || rePassword.isBlank() || !touCheckBox) {
 
             if (password != rePassword) {
-               // errorMessage("Passwords do not match")
+                errorList.add(RegisterError(0, "Passwords do not match"))
+                errorLiveData.value = errorList
             }
 
             if (!touCheckBox) {
-               // errorMessage("Accept Terms of Use")
+                errorList.add(RegisterError(1, "Accept Terms of Use"))
+                errorLiveData.value = errorList
             }
 
         } else {
-            isNicknameFree(email,password,nickname)
+            isNicknameFree(email, password, nickname)
         }
-
+        return errorLiveData
     }
 
     override fun isNicknameFree(email: String, password: String, nickname: String) {
@@ -61,12 +69,14 @@ class AuthRegisterInterfaceImpl(private val context: Context) : AuthRegisterInte
         database.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
-                   // errorMessage("Username taken")
+                    errorList.add(RegisterError(2, "Nickname taken"))
+                    errorLiveData.value = errorList
                 } else {
                     registerUser(email, password, nickname)
                 }
 
             }
+
             override fun onCancelled(error: DatabaseError) {
                 //error
             }
@@ -86,16 +96,18 @@ class AuthRegisterInterfaceImpl(private val context: Context) : AuthRegisterInte
                     addNicknameToDatabase(nickname)
                     sharedPreferences.edit().putString("nick", nickname).apply()
                     val intent = Intent(context.applicationContext, MainActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    intent.flags =
+                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
 
-                     context.startActivity(intent)
+                    context.startActivity(intent)
                 }
             }
             .addOnFailureListener {
                 Log.d("Main", "Fail to create user: ${it.message}")
                 when (it) {
                     is FirebaseAuthUserCollisionException -> {
-                     // "Account with this email already exists"
+                        errorList.add(RegisterError(3, "E-mail taken"))
+                        errorLiveData.value = errorList
                     }
                 }
             }
@@ -108,8 +120,6 @@ class AuthRegisterInterfaceImpl(private val context: Context) : AuthRegisterInte
             ref.setValue(RegisterData(nickname, uid, 0, 0, 0, 0))
         }
     }
-
-
 
 
 }

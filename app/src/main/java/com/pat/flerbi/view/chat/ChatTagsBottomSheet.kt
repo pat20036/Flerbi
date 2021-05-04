@@ -24,10 +24,8 @@ class ChatTagsBottomSheet : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        for(i in matchTags)
-        {
-            if(matchTags.isNotEmpty())
-            {
+        for (i in matchTags) {
+            if (matchTags.isNotEmpty()) {
                 val chip = Chip(binding.chatChipGroup.context)
                 chip.text = i
                 chip.setTextAppearance(R.style.CustomChipStyle)
@@ -35,11 +33,9 @@ class ChatTagsBottomSheet : BottomSheetDialogFragment() {
             }
         }
 
-        if(matchTags.isEmpty())
-        {
-                binding.tagsInfoTextView.visibility = View.VISIBLE
+        if (matchTags.isEmpty()) {
+            binding.tagsInfoTextView.visibility = View.VISIBLE
         }
-
     }
 
     override fun onDestroyView() {

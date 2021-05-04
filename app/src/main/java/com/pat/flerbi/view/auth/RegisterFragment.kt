@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.Observer
 import com.google.android.material.textfield.TextInputLayout
 import com.pat.flerbi.R
 import com.pat.flerbi.databinding.FragmentRegisterBinding
@@ -31,11 +33,13 @@ class RegisterFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        observeErrors()
 
         binding.registerButton.setOnClickListener()
         {
             clearDataErrors()
             getInputData()
+            binding.registerProgressBar.visibility = View.VISIBLE
             authViewModel.registerUser(email, password, rePassword, reNickname, touAccepted)
         }
     }
@@ -45,10 +49,6 @@ class RegisterFragment : Fragment() {
         binding.rePasswordRegEditText.error = null
         binding.emailRegEditText.error = null
         binding.nicknameRegEditText.error = null
-        val checkBox = binding.touCheckBox
-        touAccepted = checkBox.isChecked
-
-
     }
 
     private fun getInputData() {
@@ -60,6 +60,35 @@ class RegisterFragment : Fragment() {
             view?.findViewById<TextInputLayout>(R.id.rePasswordRegEditText)?.editText?.text.toString()
         reNickname =
             view?.findViewById<TextInputLayout>(R.id.nicknameRegEditText)?.editText?.text.toString()
+
+        val checkBox = binding.touCheckBox
+        touAccepted = checkBox.isChecked
+    }
+
+    private fun observeErrors() {
+        authViewModel.registerErrorMessages.observe(viewLifecycleOwner, Observer { error ->
+            error.forEach {
+                binding.registerProgressBar.visibility = View.INVISIBLE
+                if (it.id == 0) {
+                    binding.passwordRegEditText.error = it.description
+                    binding.rePasswordRegEditText.error = it.description
+                }
+                if (it.id == 1) {
+                    Toast.makeText(activity?.applicationContext, it.description, Toast.LENGTH_SHORT)
+                        .show()
+                }
+
+                if (it.id == 2) {
+                    binding.nicknameRegEditText.error = it.description
+                }
+
+                if (it.id == 3) {
+                    binding.emailRegEditText.error = it.description
+                }
+            }
+
+        })
+
     }
 
 }

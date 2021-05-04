@@ -24,18 +24,18 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemReselectedListener {
             return@setOnNavigationItemReselectedListener
         }
-        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+        navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-//                R.id.darkThemeFragment, R.id.allTagsFragment -> bottomNavigationView.visibility =
-//                    View.GONE
+                /*R.id.darkThemeFragment,*/R.id.locationSettingsFragment, R.id.allTagsFragment -> bottomNavigationView.visibility =
+                    View.GONE
                 else -> bottomNavigationView.visibility = View.VISIBLE
             }
         }
-    userViewModel.addToActiveUsers()
+        userViewModel.addToActiveUsers()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-    userViewModel.removeFromActiveUsers()
+        userViewModel.removeFromActiveUsers()
     }
 }

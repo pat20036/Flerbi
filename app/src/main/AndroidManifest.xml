@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pat.flerbi">
 
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"></uses-permission>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <application
         android:name=".FlerbiApp"
         android:allowBackup="true"
@@ -11,10 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Flerbi">
-        <activity android:name=".view.chat.ChatActivity"
-            android:parentActivityName=".view.main.MainActivity"></activity>
-        <activity android:name=".view.main.MainActivity" />
-        <activity android:name=".view.auth.WelcomeActivity">
+        <activity
+            android:name=".view.chat.ChatActivity"
+            android:parentActivityName=".view.main.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.main.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.auth.WelcomeActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
