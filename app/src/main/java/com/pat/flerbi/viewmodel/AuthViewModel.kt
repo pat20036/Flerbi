@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.pat.flerbi.interfaces.AuthLoginInterface
-import com.pat.flerbi.AuthRegisterInterface
+import com.pat.flerbi.interfaces.AuthRegisterInterface
 import com.pat.flerbi.model.LoginError
 
 class AuthViewModel(private val authRegisterInterface: AuthRegisterInterface, private val authLoginInterface: AuthLoginInterface): ViewModel() {

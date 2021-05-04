@@ -4,8 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
-import com.google.firebase.database.ValueEventListener
-import com.pat.flerbi.OnlineOfflineInterface
+import com.pat.flerbi.interfaces.OnlineOfflineInterface
 import com.pat.flerbi.interfaces.SharedPreferencesInterface
 import com.pat.flerbi.interfaces.UserInterface
 import com.pat.flerbi.model.Tag

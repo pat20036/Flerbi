@@ -48,7 +48,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="65dp"
                     android:layout_marginRight="65dp"
-                    android:transitionName="search"
+                    android:transitionName="locationCardView"
                     app:cardBackgroundColor="#FFFFFF"
                     app:cardCornerRadius="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -76,7 +76,7 @@
                         android:textColorHint="#A6A6A6"
                         android:textSize="12sp"
                         android:textStyle="bold"
-                        android:transitionName="search2" />
+                        android:transitionName="locationEditText" />
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView

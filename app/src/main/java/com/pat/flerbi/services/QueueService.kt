@@ -15,7 +15,7 @@ import androidx.core.app.NotificationCompat
 import androidx.navigation.NavDeepLinkBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.pat.flerbi.view.main.ChatActivity
+import com.pat.flerbi.view.chat.ChatActivity
 import com.pat.flerbi.R
 import com.pat.flerbi.helpers.QueueInfo.location
 import com.pat.flerbi.helpers.QueueInfo.nick

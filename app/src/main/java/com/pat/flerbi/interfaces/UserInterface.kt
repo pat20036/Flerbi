@@ -22,6 +22,7 @@ interface UserInterface {
     fun getProfileRecommends():LiveData<String>
     fun isUserActive():LiveData<Boolean>
     fun getProfileTags():LiveData<List<Tag>>
+
 }
 
 class UserInterfaceImpl(private val context: Context) : UserInterface {
@@ -140,5 +141,7 @@ class UserInterfaceImpl(private val context: Context) : UserInterface {
         })
     return myTagsLiveData
     }
+
+
 
 }

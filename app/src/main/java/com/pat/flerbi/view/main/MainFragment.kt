@@ -10,6 +10,7 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.pat.flerbi.R
 import com.pat.flerbi.databinding.FragmentMainBinding
+import com.pat.flerbi.helpers.QueueInfo.nick
 import com.pat.flerbi.viewmodel.UserViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -42,6 +43,7 @@ class MainFragment : Fragment() {
         observeLastLocation()
         observeFavoriteLocation()
 
+        nick = userViewModel.userNickname.value.toString()
         binding.nicknameTextView.text = userViewModel.userNickname.value
         binding.statsNicknameTextView.text = userViewModel.userNickname.value
 
@@ -53,8 +55,8 @@ class MainFragment : Fragment() {
         binding.locationEditText.setOnClickListener()
         {
             val extras = FragmentNavigatorExtras(
-                binding.locationEditText to "search2",
-                binding.locationCardView to "search"
+                binding.locationEditText to "locationEditText",
+                binding.locationCardView to "locationCardView"
             )
             findNavController().navigate(
                 R.id.action_mainFragment_to_queueFragment,

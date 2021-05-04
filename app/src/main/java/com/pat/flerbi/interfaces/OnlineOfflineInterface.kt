@@ -1,4 +1,4 @@
-package com.pat.flerbi
+package com.pat.flerbi.interfaces
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase

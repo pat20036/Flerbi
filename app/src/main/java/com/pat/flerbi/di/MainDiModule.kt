@@ -1,6 +1,5 @@
 package com.pat.flerbi.di
 
-import com.pat.flerbi.*
 import com.pat.flerbi.interfaces.*
 import com.pat.flerbi.viewmodel.AuthViewModel
 import com.pat.flerbi.viewmodel.ChatViewModel
