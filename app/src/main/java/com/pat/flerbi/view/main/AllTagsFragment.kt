@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.pat.flerbi.databinding.FragmentAllTagsBinding
 import com.pat.flerbi.viewmodel.UserViewModel
@@ -28,6 +30,8 @@ class AllTagsFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+
+
         binding.tagsBackButton.setOnClickListener()
         {
             findNavController().popBackStack()
@@ -35,6 +39,7 @@ class AllTagsFragment : Fragment() {
        binding.saveTagsButton.setOnClickListener()
         {
             tagsList.clear()
+            observeMessage()
             saveTags()
         }
     }
@@ -48,7 +53,14 @@ class AllTagsFragment : Fragment() {
         }
         userViewModel.saveUserTags(tagsList)
 
+    }
 
+    private fun observeMessage()
+    {
+     userViewModel.allTagsInfo.observe(viewLifecycleOwner, Observer {
+         Snackbar.make(requireView(), it, Snackbar.LENGTH_SHORT).show()
+         findNavController().popBackStack()
+     })
 
     }
 

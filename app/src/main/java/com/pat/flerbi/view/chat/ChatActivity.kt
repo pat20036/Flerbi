@@ -36,6 +36,7 @@ class ChatActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.toolbar.title = null
 
         matchUid = intent.getStringExtra("OPP_UID").toString()
@@ -81,8 +82,8 @@ class ChatActivity : AppCompatActivity() {
                 true
             }
             R.id.userTagsItem -> {
-                //val bottomSheet = ChatTagsBottomSheet()
-               // bottomSheet.show(supportFragmentManager, "Tag")
+                val bottomSheet = ChatTagsBottomSheet()
+                bottomSheet.show(supportFragmentManager, "Tag")
                 true
             }
             R.id.end -> {

@@ -16,7 +16,7 @@ import com.pat.flerbi.view.auth.WelcomeActivity
 interface UserInterface {
     fun getUserEmail(): String
     fun logoutUser()
-    fun saveUserTags(tags: List<String>)
+    fun saveUserTags(tags: List<String>):LiveData<String>
     fun getProfilePoints(): LiveData<String>
     fun getProfileAchievements(): LiveData<String>
     fun getProfileRecommends():LiveData<String>
@@ -37,9 +37,14 @@ class UserInterfaceImpl(private val context: Context) : UserInterface {
 
     }
 
-    override fun saveUserTags(tags: List<String>) {
+    override fun saveUserTags(tags: List<String>):LiveData<String> {
+        val infoLiveData = MutableLiveData<String>()
         val ref = FirebaseDatabase.getInstance().getReference("user-tags/$uid/tags")
-        ref.setValue(tags)
+        ref.setValue(tags).addOnCompleteListener {
+            infoLiveData.value = "Saved!"
+        }
+
+        return infoLiveData
     }
 
     override fun getProfilePoints(): LiveData<String> {

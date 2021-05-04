@@ -18,7 +18,9 @@ import com.google.firebase.database.*
 import com.pat.flerbi.view.chat.ChatActivity
 import com.pat.flerbi.R
 import com.pat.flerbi.helpers.QueueInfo.location
+import com.pat.flerbi.helpers.QueueInfo.matchTags
 import com.pat.flerbi.helpers.QueueInfo.nick
+import com.pat.flerbi.helpers.QueueInfo.roomKey
 import com.pat.flerbi.helpers.QueueInfo.roomNr
 import com.pat.flerbi.helpers.QueueInfo.searchSecurity
 import com.pat.flerbi.model.FirstUser
@@ -28,13 +30,7 @@ import com.pat.flerbi.view.main.MainActivity
 
 
 class QueueService : Service() {
-
     private val uid: String = FirebaseAuth.getInstance().uid.toString()
-
-    companion object {
-        val matchTags = arrayListOf<String>()
-        lateinit var roomKey: String
-    }
 
     private lateinit var oppNick: String
     private lateinit var oppUid: String
@@ -288,8 +284,6 @@ class QueueService : Service() {
                         }
 
                     })
-
-
                 }
             }
 

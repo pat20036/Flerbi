@@ -45,6 +45,9 @@ class UserViewModel(
     private val _userFavoriteLocation = MutableLiveData<String>()
     val userFavoriteLocation: LiveData<String> get() = _userFavoriteLocation
 
+    private val _allTagsInfo = MutableLiveData<String>()
+    val allTagsInfo: LiveData<String> get() = _allTagsInfo
+
 
     fun getUserNickname() {
         _userNickname.value = sharedPreferencesInterface.getUserNickname()
@@ -109,7 +112,6 @@ class UserViewModel(
         })
     }
 
-
     fun getProfileTags() {
         userInterface.getProfileTags().observeForever(Observer {
             _profileTags.value = it
@@ -118,7 +120,9 @@ class UserViewModel(
     }
 
     fun saveUserTags(tags: List<String>) {
-        userInterface.saveUserTags(tags)
+        userInterface.saveUserTags(tags).observeForever(Observer {
+            _allTagsInfo.value = it
+        })
     }
 
     fun logoutUser()

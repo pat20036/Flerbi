@@ -67,4 +67,5 @@
     <string name="recommend">Recommend</string>
     <string name="report_user">Report User</string>
     <string name="end">End</string>
+    <string name="user_has_not_assigned_tags">User has not assigned tags.</string>
 </resources>
