@@ -132,6 +132,7 @@
                 android:fontFamily="@font/montserrat"
                 android:text="@string/save"
                 android:textAllCaps="false"
+                android:textColor="#000000"
                 app:layout_constraintBottom_toBottomOf="@+id/favoriteLocationEditText"
                 app:layout_constraintStart_toEndOf="@+id/favoriteLocationEditText"
                 app:layout_constraintTop_toTopOf="@+id/favoriteLocationEditText" />

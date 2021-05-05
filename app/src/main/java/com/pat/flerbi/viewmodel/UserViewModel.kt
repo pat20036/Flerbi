@@ -48,6 +48,8 @@ class UserViewModel(
     private val _allTagsInfo = MutableLiveData<String>()
     val allTagsInfo: LiveData<String> get() = _allTagsInfo
 
+    private val _darkTheme = MutableLiveData<Boolean>()
+    val darkTheme: LiveData<Boolean> get() = _darkTheme
 
     fun getUserNickname() {
         _userNickname.value = sharedPreferencesInterface.getUserNickname()
@@ -128,6 +130,11 @@ class UserViewModel(
     fun logoutUser()
     {
         userInterface.logoutUser()
+    }
+
+    fun darkTheme(switchState:Boolean)
+    {
+       _darkTheme.value = sharedPreferencesInterface.darkTheme(switchState)
     }
 
 

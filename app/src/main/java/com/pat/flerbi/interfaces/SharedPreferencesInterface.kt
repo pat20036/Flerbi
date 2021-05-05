@@ -1,6 +1,7 @@
 package com.pat.flerbi.interfaces
 
 import android.content.Context
+import androidx.appcompat.app.AppCompatDelegate
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -14,6 +15,7 @@ interface SharedPreferencesInterface {
     fun getFavoriteLocation():String
     fun setLastLocation(location:String)
     fun getLastLocation():String
+    fun darkTheme(switchState: Boolean): Boolean
 }
 
 class SharedPreferencesInterfaceImpl(private val context: Context) : SharedPreferencesInterface {
@@ -49,7 +51,25 @@ class SharedPreferencesInterfaceImpl(private val context: Context) : SharedPrefe
 
     override fun getLastLocation(): String =  sharedPreferences.getString("last_location", context.getString(R.string.empty))!!
 
+    override fun darkTheme(switchState: Boolean): Boolean {
+        if(switchState)
+        {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            sharedPreferences.edit().putBoolean("dark_theme", true).apply()
+        }
+        else
+        {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            sharedPreferences.edit().putBoolean("dark_theme", false).apply()
+        }
 
+        val darkTheme = sharedPreferences.getBoolean("dark_theme", false)
+
+        if (darkTheme)  AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
+    return darkTheme
+    }
 
 
 }

@@ -28,14 +28,17 @@ class MainFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        userViewModel.isUserActive()
-        userViewModel.getProfilePoints()
-        userViewModel.getProfileAchievements()
-        userViewModel.getProfileRecommends()
-        userViewModel.getUserNickname()
-        userViewModel.getActiveUsersCount()
-        userViewModel.getLastLocation()
-        userViewModel.getFavoriteLocation()
+
+        userViewModel.apply {
+            isUserActive()
+            getProfilePoints()
+            getProfileAchievements()
+            getProfileRecommends()
+            getUserNickname()
+            getLastLocation()
+            getFavoriteLocation()
+            getActiveUsersCount()
+        }
 
         observeUserStats()
         observeUserStatus()
@@ -97,13 +100,14 @@ class MainFragment : Fragment() {
 
     private fun observeLastLocation() {
         userViewModel.userLastLocation.observe(viewLifecycleOwner, Observer {
-            binding.lastLocationTextView.text = it
+            if(it.isBlank()) binding.lastLocationTextView.text = getString(R.string.empty)
+            else binding.lastLocationTextView.text = it
         })
     }
 
     private fun observeFavoriteLocation() {
         userViewModel.userFavoriteLocation.observe(viewLifecycleOwner, Observer {
-            if(it == "") binding.favLocationTextView.text = getString(R.string.empty)
+            if(it.isBlank()) binding.favLocationTextView.text = getString(R.string.empty)
             else binding.favLocationTextView.text = it
 
         })

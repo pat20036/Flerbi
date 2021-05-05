@@ -8,4 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="main_app_color">#EF5350</color>
+    <color name="toolbar">#191919</color>
+    <color name="toolbar_title">#FFFFFFFF</color>
+    <color name="fragment_title">#FFFFFF</color>
+    <color name="card_background">#191919</color>
+    <color name="profile_button_text">#FFFFFF</color>
 </resources>

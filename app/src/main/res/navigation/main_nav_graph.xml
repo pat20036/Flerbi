@@ -20,7 +20,11 @@
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.pat.flerbi.view.main.ProfileFragment"
-        android:label="ProfileFragment" />
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_darkThemeFragment"
+            app:destination="@id/darkThemeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/tagsFragment"
         android:name="com.pat.flerbi.view.main.TagsFragment"
@@ -43,4 +47,8 @@
         android:name="com.pat.flerbi.view.main.QueueFragment"
         android:label="fragment_queue"
         tools:layout="@layout/fragment_queue" />
+    <fragment
+        android:id="@+id/darkThemeFragment"
+        android:name="com.pat.flerbi.view.settings.DarkThemeFragment"
+        android:label="DarkThemeFragment" />
 </navigation>

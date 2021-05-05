@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E1E1E1">
+    android:background="#121212">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
@@ -97,13 +97,13 @@
                 android:id="@+id/constraintLayout5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#EFEFEF">
+                android:background="#121212">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout6"
                     android:layout_width="match_parent"
                     android:layout_height="160dp"
-                    android:background="@drawable/main_shape_search_screen"
+                    android:background="@drawable/main_shape_search_screen_dark"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -112,12 +112,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
-                    android:layout_marginLeft="30dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="30dp"
-                    android:layout_marginRight="30dp"
                     android:transitionName="locationCardView"
-                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardBackgroundColor="#222222"
                     app:cardCornerRadius="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -156,7 +154,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/montserrat_bold"
-                    android:textColor="#000000"
+                    android:textColor="#FFFFFF"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:visibility="visible"
@@ -181,7 +179,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:background="#EFEFEF"
                     app:layout_constraintEnd_toEndOf="@+id/statsNicknameTextView"
                     app:layout_constraintStart_toStartOf="@+id/statsNicknameTextView"
                     app:layout_constraintTop_toBottomOf="@+id/statsNicknameTextView">
@@ -302,7 +299,8 @@
                     android:src="@drawable/keyboard_arrow_right_24px"
                     app:layout_constraintBottom_toBottomOf="@+id/textView61"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView61" />
+                    app:layout_constraintTop_toTopOf="@+id/textView61"
+                    app:tint="#FFFFFF" />
 
                 <ImageView
                     android:id="@+id/imageView33"
@@ -349,12 +347,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
-                    android:layout_marginRight="20dp"
                     android:src="@drawable/keyboard_arrow_right_24px"
                     app:layout_constraintBottom_toBottomOf="@+id/textView67"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView67"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintVertical_bias="0.0"
+                    app:tint="#121212" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardView4"
@@ -391,7 +389,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/montserrat_bold"
                             android:text="0"
-                            android:textColor="#000000"
+                            android:textColor="#FFFFFF"
                             android:textSize="12sp"
                             app:layout_constraintStart_toStartOf="@+id/textView68"
                             app:layout_constraintTop_toBottomOf="@+id/textView68" />
@@ -414,7 +412,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:tint="#000000" />
+                            app:tint="#FFFFFF" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -452,7 +450,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/montserrat_bold"
                             android:text="@string/empty"
-                            android:textColor="#000000"
+                            android:textColor="#FFFFFF"
                             android:textSize="12sp"
                             app:layout_constraintStart_toStartOf="@+id/textView70"
                             app:layout_constraintTop_toBottomOf="@+id/textView70" />
@@ -476,7 +474,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:tint="#000000" />
+                            app:tint="#FFFFFF" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -515,7 +513,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/montserrat_bold"
                             android:text="@string/empty"
-                            android:textColor="#000000"
+                            android:textColor="#FFFFFF"
                             android:textSize="12sp"
                             app:layout_constraintStart_toStartOf="@+id/textView75"
                             app:layout_constraintTop_toBottomOf="@+id/textView75" />
@@ -539,7 +537,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:tint="#000000" />
+                            app:tint="#FFFFFF" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
 

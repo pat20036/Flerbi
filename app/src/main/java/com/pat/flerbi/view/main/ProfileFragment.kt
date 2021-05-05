@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.pat.flerbi.R
 import com.pat.flerbi.databinding.FragmentProfileBinding
 import com.pat.flerbi.viewmodel.UserViewModel
@@ -28,12 +30,15 @@ class ProfileFragment : Fragment() {
         userViewModel.getUserEmail()
         binding.nicknameProfileTextView.text = userViewModel.userNickname.value
         binding.emailProfileTextView.text = userViewModel.userEmail.value
+
         binding.logoutButton.setOnClickListener()
         {
             userViewModel.logoutUser()
         }
+        binding.darkThemeButton.setOnClickListener()
+        {
+            findNavController().navigate(R.id.action_profileFragment_to_darkThemeFragment)
+        }
+
     }
-
-
-
 }

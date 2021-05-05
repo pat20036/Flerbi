@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         }
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                /*R.id.darkThemeFragment,*/R.id.locationSettingsFragment, R.id.allTagsFragment -> bottomNavigationView.visibility =
+                R.id.darkThemeFragment, R.id.locationSettingsFragment, R.id.allTagsFragment -> bottomNavigationView.visibility =
                     View.GONE
                 else -> bottomNavigationView.visibility = View.VISIBLE
             }

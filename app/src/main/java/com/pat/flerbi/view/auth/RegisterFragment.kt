@@ -77,11 +77,9 @@ class RegisterFragment : Fragment() {
                     Toast.makeText(activity?.applicationContext, it.description, Toast.LENGTH_SHORT)
                         .show()
                 }
-
                 if (it.id == 2) {
                     binding.nicknameRegEditText.error = it.description
                 }
-
                 if (it.id == 3) {
                     binding.emailRegEditText.error = it.description
                 }
