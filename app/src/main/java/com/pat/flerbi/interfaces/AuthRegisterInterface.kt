@@ -49,12 +49,12 @@ class AuthRegisterInterfaceImpl(private val context: Context) : AuthRegisterInte
         if (email.isBlank() || password.isBlank() || password.length < 6 || password != rePassword || rePassword.isBlank() || !touCheckBox) {
 
             if (password != rePassword) {
-                errorList.add(RegisterError(0, "Passwords do not match"))
+                errorList.add(RegisterError.WRONG_PASSWORD)
                 errorLiveData.value = errorList
             }
 
             if (!touCheckBox) {
-                errorList.add(RegisterError(1, "Accept Terms of Use"))
+                errorList.add(RegisterError.ACCEPT_TERMS)
                 errorLiveData.value = errorList
             }
 
@@ -69,7 +69,7 @@ class AuthRegisterInterfaceImpl(private val context: Context) : AuthRegisterInte
         database.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
-                    errorList.add(RegisterError(2, "Nickname taken"))
+                    errorList.add(RegisterError.NICKNAME_TAKEN)
                     errorLiveData.value = errorList
                 } else {
                     registerUser(email, password, nickname)
@@ -106,7 +106,7 @@ class AuthRegisterInterfaceImpl(private val context: Context) : AuthRegisterInte
                 Log.d("Main", "Fail to create user: ${it.message}")
                 when (it) {
                     is FirebaseAuthUserCollisionException -> {
-                        errorList.add(RegisterError(3, "E-mail taken"))
+                        errorList.add(RegisterError.EMAIL_TAKEN)
                         errorLiveData.value = errorList
                     }
                 }

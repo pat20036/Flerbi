@@ -8,7 +8,6 @@ import com.xwray.groupie.Item
 class MsgToViewHolder(val text: String) : Item<GroupieViewHolder>() {
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
         viewHolder.itemView.findViewById<TextView>(R.id.msg_to).text = text
-
     }
 
     override fun getLayout(): Int {
@@ -20,7 +19,6 @@ class MsgToViewHolder(val text: String) : Item<GroupieViewHolder>() {
 class MsgToMeViewHolder(val text: String) : Item<GroupieViewHolder>() {
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
         viewHolder.itemView.findViewById<TextView>(R.id.msg_to_me).text = text
-
     }
 
     override fun getLayout(): Int {

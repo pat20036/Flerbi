@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import com.google.android.material.textfield.TextInputLayout
 import com.pat.flerbi.R
 import com.pat.flerbi.databinding.FragmentRegisterBinding
+import com.pat.flerbi.model.RegisterError
 import com.pat.flerbi.viewmodel.AuthViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -45,10 +46,13 @@ class RegisterFragment : Fragment() {
     }
 
     private fun clearDataErrors() {
-        binding.passwordRegEditText.error = null
-        binding.rePasswordRegEditText.error = null
-        binding.emailRegEditText.error = null
-        binding.nicknameRegEditText.error = null
+        val emptyError = null
+        binding.apply {
+            passwordRegEditText.error = emptyError
+            rePasswordRegEditText.error = emptyError
+            emailRegEditText.error = emptyError
+            nicknameRegEditText.error = emptyError
+        }
     }
 
     private fun getInputData() {
@@ -66,27 +70,31 @@ class RegisterFragment : Fragment() {
     }
 
     private fun observeErrors() {
-        authViewModel.registerErrorMessages.observe(viewLifecycleOwner, Observer { error ->
-            error.forEach {
-                binding.registerProgressBar.visibility = View.INVISIBLE
-                if (it.id == 0) {
-                    binding.passwordRegEditText.error = it.description
-                    binding.rePasswordRegEditText.error = it.description
-                }
-                if (it.id == 1) {
-                    Toast.makeText(activity?.applicationContext, it.description, Toast.LENGTH_SHORT)
-                        .show()
-                }
-                if (it.id == 2) {
-                    binding.nicknameRegEditText.error = it.description
-                }
-                if (it.id == 3) {
-                    binding.emailRegEditText.error = it.description
+        authViewModel.registerErrorMessages.observe(viewLifecycleOwner, Observer { errorList ->
+            binding.registerProgressBar.visibility = View.INVISIBLE
+            errorList.forEach {
+                when (it) {
+                    RegisterError.WRONG_PASSWORD -> {
+                        binding.apply {
+                            passwordRegEditText.error = it.description
+                            rePasswordRegEditText.error = it.description
+                        }
+                    }
+                    RegisterError.EMAIL_TAKEN -> binding.emailRegEditText.error = it.description
+
+                    RegisterError.NICKNAME_TAKEN -> binding.nicknameRegEditText.error =
+                        it.description
+
+                    RegisterError.ACCEPT_TERMS -> Toast.makeText(
+                        activity?.applicationContext,
+                        it.description,
+                        Toast.LENGTH_SHORT
+                    ).show()
+
                 }
             }
-
-        })
+        }
+        )
 
     }
-
 }

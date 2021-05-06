@@ -32,15 +32,15 @@ class AuthLoginInterfaceImpl(private val context: Context) : AuthLoginInterface 
         errorList.clear()
         if (email.isBlank() || password.isBlank() || password.length < 6) {
             if (email.isBlank()) {
-                errorList.add(LoginError(0, "Email cannot be blank"))
+                errorList.add(LoginError.EMPTY_EMAIL)
                 errorLiveData.value = errorList
             }
             if (password.isBlank()) {
-                errorList.add(LoginError(1, "Password cannot be blank"))
+                errorList.add(LoginError.EMPTY_PASSWORD)
                 errorLiveData.value = errorList
             }
             if (password.length < 6) {
-                errorList.add(LoginError(2, "Incorrect password"))
+                errorList.add(LoginError.PASSWORD_LENGTH)
                 errorLiveData.value = errorList
             }
 
@@ -83,15 +83,15 @@ class AuthLoginInterfaceImpl(private val context: Context) : AuthLoginInterface 
             {
                 when (it) {
                     is FirebaseAuthInvalidCredentialsException -> {
-                        errorList.add(LoginError(3, "Incorrect password"))
+                        errorList.add(LoginError.INCORRECT_PASSWORD)
                         errorLiveData.value = errorList
                     }
                     is FirebaseAuthEmailException -> {
-                        errorList.add(LoginError(4, "Incorrect email"))
+                        errorList.add(LoginError.INCORRECT_EMAIL)
                         errorLiveData.value = errorList
                     }
                     is FirebaseAuthInvalidUserException -> {
-                        errorList.add(LoginError(5, "User not found"))
+                        errorList.add(LoginError.USER_NOT_FOUND)
                         errorLiveData.value = errorList
                     }
                 }

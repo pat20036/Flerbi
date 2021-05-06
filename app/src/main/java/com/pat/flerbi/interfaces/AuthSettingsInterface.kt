@@ -70,7 +70,6 @@ class AuthSettingsInterfaceImpl(private val context: Context) : AuthSettingsInte
         val responseLiveData = MutableLiveData<Boolean>()
         user?.delete()?.addOnCompleteListener {
             if (it.isSuccessful) {
-
                 deleteFromActiveUsers()
                 deleteFromDatabase()
                 deleteUserTags()
@@ -99,11 +98,8 @@ class AuthSettingsInterfaceImpl(private val context: Context) : AuthSettingsInte
             FirebaseDatabase.getInstance().getReference("registered-users/$uid")
         registeredUserDb.removeValue()
     }
-    private fun deleteUserTags()
-    {
-        val tagsUserDb = FirebaseDatabase.getInstance().getReference("user-tags/$uid")
-        tagsUserDb.removeValue()
-    }
+    private fun deleteUserTags() = FirebaseDatabase.getInstance().getReference("user-tags/$uid").removeValue()
+
     private fun deleteNickname(nickname: String)
     {
         val nicknameDb = FirebaseDatabase.getInstance().getReference("nicknames/$nickname")

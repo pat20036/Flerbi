@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.pat.flerbi.R
 import com.pat.flerbi.databinding.FragmentLoginBinding
+import com.pat.flerbi.model.LoginError
 import com.pat.flerbi.viewmodel.AuthViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -59,32 +60,18 @@ class LoginFragment : Fragment() {
     }
 
     private fun observeErrors() {
-        authViewModel.loginErrorMessages.observe(viewLifecycleOwner, Observer { errors ->
-            errors.forEach {
+        authViewModel.loginErrorMessages.observe(viewLifecycleOwner, Observer { errorList ->
+            errorList.forEach {
                 binding.loginProgressBar.visibility = View.INVISIBLE
-                if (it.id == 0) {
-                    binding.emailLoginEditText.error = it.description
+                when(it)
+                {
+                    LoginError.PASSWORD_LENGTH -> binding.passwordLoginEditText.error = it.description
+                    LoginError.EMPTY_PASSWORD -> binding.passwordLoginEditText.error = it.description
+                    LoginError.EMPTY_EMAIL -> binding.emailLoginEditText.error = it.description
+                    LoginError.INCORRECT_EMAIL -> binding.emailLoginEditText.error = it.description
+                    LoginError.INCORRECT_PASSWORD -> binding.passwordLoginEditText.error = it.description
+                    LoginError.USER_NOT_FOUND -> binding.emailLoginEditText.error = it.description
                 }
-                if (it.id == 1) {
-                    binding.passwordLoginEditText.error = it.description
-                }
-
-                if (it.id == 2) {
-                    binding.passwordLoginEditText.error = it.description
-                }
-
-                if (it.id == 3) {
-                    binding.passwordLoginEditText.error = it.description
-                }
-
-                if (it.id == 4) {
-                    binding.emailLoginEditText.error = it.description
-                }
-
-                if (it.id == 5) {
-                    binding.emailLoginEditText.error = it.description
-                }
-
             }
         })
     }

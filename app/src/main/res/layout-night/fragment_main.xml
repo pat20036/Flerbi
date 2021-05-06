@@ -307,11 +307,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
-                    android:layout_marginRight="20dp"
                     android:src="@drawable/keyboard_arrow_right_24px"
                     app:layout_constraintBottom_toBottomOf="@+id/textView59"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView59" />
+                    app:layout_constraintTop_toTopOf="@+id/textView59"
+                    app:tint="#FFFFFF" />
 
                 <TextView
                     android:id="@+id/textView65"
@@ -352,7 +352,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView67"
                     app:layout_constraintVertical_bias="0.0"
-                    app:tint="#121212" />
+                    app:tint="#FFFFFF" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardView4"
