@@ -15,7 +15,8 @@ interface SharedPreferencesInterface {
     fun getFavoriteLocation():String
     fun setLastLocation(location:String)
     fun getLastLocation():String
-    fun darkTheme(switchState: Boolean): Boolean
+    fun setDarkTheme(switchState: Boolean): Boolean
+    fun checkIsDarkTheme():Boolean
 }
 
 class SharedPreferencesInterfaceImpl(private val context: Context) : SharedPreferencesInterface {
@@ -51,7 +52,7 @@ class SharedPreferencesInterfaceImpl(private val context: Context) : SharedPrefe
 
     override fun getLastLocation(): String =  sharedPreferences.getString("last_location", context.getString(R.string.empty))!!
 
-    override fun darkTheme(switchState: Boolean): Boolean {
+    override fun setDarkTheme(switchState: Boolean): Boolean {
         if(switchState)
         {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
@@ -70,6 +71,9 @@ class SharedPreferencesInterfaceImpl(private val context: Context) : SharedPrefe
 
     return darkTheme
     }
+
+    override fun checkIsDarkTheme(): Boolean = sharedPreferences.getBoolean("dark_theme", false)
+
 
 
 }

@@ -3,6 +3,8 @@ package com.pat.flerbi.view.main
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.pat.flerbi.R
@@ -26,12 +28,13 @@ class MainActivity : AppCompatActivity() {
         }
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.darkThemeFragment, R.id.locationSettingsFragment, R.id.allTagsFragment -> bottomNavigationView.visibility =
-                    View.GONE
-                else -> bottomNavigationView.visibility = View.VISIBLE
+                R.id.tagsFragment, R.id.mainFragment, R.id.profileFragment, R.id.queueFragment -> bottomNavigationView.visibility =
+                    View.VISIBLE
+                else -> bottomNavigationView.visibility = View.GONE
             }
         }
         userViewModel.addToActiveUsers()
+
     }
 
     override fun onDestroy() {

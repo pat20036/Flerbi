@@ -132,10 +132,14 @@ class UserViewModel(
         userInterface.logoutUser()
     }
 
-    fun darkTheme(switchState:Boolean)
+    fun setDarkTheme(switchState:Boolean)
     {
-       _darkTheme.value = sharedPreferencesInterface.darkTheme(switchState)
+       _darkTheme.value = sharedPreferencesInterface.setDarkTheme(switchState)
     }
 
+    fun checkIsDarkTheme()
+    {
+        _darkTheme.value = sharedPreferencesInterface.checkIsDarkTheme()
+    }
 
 }

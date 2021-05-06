@@ -30,6 +30,7 @@ class MainFragment : Fragment() {
         super.onStart()
 
         userViewModel.apply {
+            checkIsDarkTheme()
             isUserActive()
             getProfilePoints()
             getProfileAchievements()

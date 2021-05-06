@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_profileFragment_to_darkThemeFragment"
             app:destination="@id/darkThemeFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/tagsFragment"
@@ -51,4 +54,92 @@
         android:id="@+id/darkThemeFragment"
         android:name="com.pat.flerbi.view.settings.DarkThemeFragment"
         android:label="DarkThemeFragment" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.pat.flerbi.view.settings.SettingsFragment"
+        android:label="SettingsFragment" >
+        <action
+            android:id="@+id/action_settingsFragment_to_confirmActionFragment"
+            app:destination="@id/confirmActionFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_appInfoFragment"
+            app:destination="@id/appInfoFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_externalLibsFragment"
+            app:destination="@id/externalLibsFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_termsFragment"
+            app:destination="@id/termsFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_externalLibsFragment2"
+            app:destination="@id/externalLibsFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_termsFragment2"
+            app:destination="@id/termsFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_contactFragment"
+            app:destination="@id/contactFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_imagesAuthorsFragment"
+            app:destination="@id/imagesAuthorsFragment" />
+        <action
+            android:id="@+id/action_settingsFragment_to_suggestionsFragment"
+            app:destination="@id/suggestionsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/appInfoFragment"
+        android:name="com.pat.flerbi.view.settings.AppInfoFragment"
+        android:label="fragment_app_info"
+        tools:layout="@layout/fragment_app_info" />
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.pat.flerbi.view.settings.ChangePasswordFragment"
+        android:label="fragment_change_password"
+        tools:layout="@layout/fragment_change_password" />
+    <fragment
+        android:id="@+id/confirmActionFragment"
+        android:name="com.pat.flerbi.view.settings.ConfirmActionFragment"
+        android:label="fragment_confirm_action"
+        tools:layout="@layout/fragment_confirm_action" >
+        <action
+            android:id="@+id/action_confirmActionFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment"
+            app:popUpTo="@id/confirmActionFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_confirmActionFragment_to_deleteAccountFragment"
+            app:destination="@id/deleteAccountFragment"
+            app:popUpTo="@id/confirmActionFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/termsFragment"
+        android:name="com.pat.flerbi.view.settings.TermsFragment"
+        android:label="fragment_terms"
+        tools:layout="@layout/fragment_terms" />
+    <fragment
+        android:id="@+id/externalLibsFragment"
+        android:name="com.pat.flerbi.view.settings.ExternalLibsFragment"
+        android:label="fragment_external_libs"
+        tools:layout="@layout/fragment_external_libs" />
+    <fragment
+        android:id="@+id/deleteAccountFragment"
+        android:name="com.pat.flerbi.view.settings.DeleteAccountFragment"
+        android:label="fragment_delete_account"
+        tools:layout="@layout/fragment_delete_account" />
+    <fragment
+        android:id="@+id/suggestionsFragment"
+        android:name="com.pat.flerbi.view.settings.SuggestionsFragment"
+        android:label="fragment_suggestions"
+        tools:layout="@layout/fragment_suggestions" />
+    <fragment
+        android:id="@+id/imagesAuthorsFragment"
+        android:name="com.pat.flerbi.view.settings.ImagesAuthorsFragment"
+        android:label="fragment_images_authors"
+        tools:layout="@layout/fragment_images_authors" />
+    <fragment
+        android:id="@+id/contactFragment"
+        android:name="com.pat.flerbi.view.settings.ContactFragment"
+        android:label="fragment_contact"
+        tools:layout="@layout/fragment_contact" />
 </navigation>

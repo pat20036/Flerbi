@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.pat.flerbi.databinding.FragmentDarkThemeBinding
 import com.pat.flerbi.viewmodel.UserViewModel
@@ -28,7 +27,7 @@ class DarkThemeFragment : Fragment() {
 
         observeDarkTheme()
         binding.darkThemeSwitch.setOnCheckedChangeListener { _, isChecked ->
-            userViewModel.darkTheme(isChecked)
+            userViewModel.setDarkTheme(isChecked)
         }
 
         binding.darkThemeBackButton.setOnClickListener()
@@ -39,8 +38,8 @@ class DarkThemeFragment : Fragment() {
 
     private fun observeDarkTheme()
     {
-        userViewModel.darkTheme.observe(viewLifecycleOwner, Observer {
-            if(it) binding.darkThemeSwitch.isChecked = true
-        })
+        val darkTheme = userViewModel.darkTheme.value!!
+        if(darkTheme) binding.darkThemeSwitch.isChecked = true
+
     }
 }

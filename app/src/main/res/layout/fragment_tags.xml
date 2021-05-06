@@ -155,7 +155,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/montserrat"
-                android:text="@string/your_interlocutor_will_saw_these_tags"
+                android:text="@string/your_interlocutor_will_see_these_tags"
                 app:layout_constraintStart_toStartOf="@+id/textView63"
                 app:layout_constraintTop_toBottomOf="@+id/textView63" />
 

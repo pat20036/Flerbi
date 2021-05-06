@@ -13,4 +13,7 @@
     <color name="fragment_title">#FFFFFF</color>
     <color name="card_background">#191919</color>
     <color name="profile_button_text">#FFFFFF</color>
+    <color name="setting_row">#191919</color>
+    <color name="settings_background">#121212</color>
+    <color name="button_text">#FF000000</color>
 </resources>

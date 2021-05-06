@@ -3,6 +3,7 @@
     package="com.pat.flerbi">
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
     <application
         android:name=".FlerbiApp"
         android:allowBackup="true"
@@ -11,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Flerbi">
+
         <activity
             android:name=".view.chat.ChatActivity"
             android:parentActivityName=".view.main.MainActivity"
