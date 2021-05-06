@@ -30,6 +30,9 @@ class AuthViewModel(
     private val _isAccountDeleted = MutableLiveData<Boolean>()
     val isAccountDeleted: LiveData<Boolean> get() = _isAccountDeleted
 
+    private val _remindResponse = MutableLiveData<Boolean>()
+    val remindResponse: LiveData<Boolean> get() = _remindResponse
+
 
     fun registerUser(
         email: String,
@@ -65,6 +68,13 @@ class AuthViewModel(
     fun deleteAccount(nickname: String) {
         authSettingsInterface.deleteAccount(nickname).observeForever(Observer {
             _isAccountDeleted.value = it
+        })
+    }
+
+    fun remindPassword(email: String)
+    {
+        authLoginInterface.remindPassword(email).observeForever(Observer {
+            _remindResponse.value = it
         })
     }
 

@@ -7,13 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputLayout
 import com.pat.flerbi.R
 import com.pat.flerbi.databinding.FragmentRegisterBinding
 import com.pat.flerbi.model.RegisterError
 import com.pat.flerbi.viewmodel.AuthViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class RegisterFragment : Fragment() {
@@ -21,7 +21,7 @@ class RegisterFragment : Fragment() {
     private lateinit var email: String
     private lateinit var password: String
     private lateinit var rePassword: String
-    private lateinit var reNickname: String
+    private lateinit var nickname: String
     private var touAccepted = false
     private val authViewModel by sharedViewModel<AuthViewModel>()
     override fun onCreateView(
@@ -41,8 +41,15 @@ class RegisterFragment : Fragment() {
             clearDataErrors()
             getInputData()
             binding.registerProgressBar.visibility = View.VISIBLE
-            authViewModel.registerUser(email, password, rePassword, reNickname, touAccepted)
+            authViewModel.registerUser(email, password, rePassword, nickname, touAccepted)
         }
+
+        binding.registerBackButton.setOnClickListener()
+        {
+            findNavController().popBackStack()
+        }
+
+
     }
 
     private fun clearDataErrors() {
@@ -56,15 +63,10 @@ class RegisterFragment : Fragment() {
     }
 
     private fun getInputData() {
-        email =
-            view?.findViewById<TextInputLayout>(R.id.emailRegEditText)?.editText?.text.toString()
-        password =
-            view?.findViewById<TextInputLayout>(R.id.passwordRegEditText)?.editText?.text.toString()
-        rePassword =
-            view?.findViewById<TextInputLayout>(R.id.rePasswordRegEditText)?.editText?.text.toString()
-        reNickname =
-            view?.findViewById<TextInputLayout>(R.id.nicknameRegEditText)?.editText?.text.toString()
-
+        email = binding.emailRegEditText.editText?.text.toString()
+        password = binding.passwordRegEditText.editText?.text.toString()
+        rePassword = binding.rePasswordRegEditText.editText?.text.toString()
+        nickname = binding.nicknameRegEditText.editText?.text.toString()
         val checkBox = binding.touCheckBox
         touAccepted = checkBox.isChecked
     }
@@ -90,11 +92,9 @@ class RegisterFragment : Fragment() {
                         it.description,
                         Toast.LENGTH_SHORT
                     ).show()
-
                 }
             }
         }
         )
-
     }
 }

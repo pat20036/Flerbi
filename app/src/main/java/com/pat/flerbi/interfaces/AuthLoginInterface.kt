@@ -2,8 +2,11 @@ package com.pat.flerbi.interfaces
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthEmailException
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
@@ -12,12 +15,14 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.pat.flerbi.R
 import com.pat.flerbi.model.LoginError
 import com.pat.flerbi.model.RegisterData
 import com.pat.flerbi.view.main.MainActivity
 
 interface AuthLoginInterface {
     fun dataValidator(email: String, password: String): LiveData<List<LoginError>>
+    fun remindPassword(email: String): LiveData<Boolean>
 }
 
 class AuthLoginInterfaceImpl(private val context: Context) : AuthLoginInterface {
@@ -49,6 +54,26 @@ class AuthLoginInterfaceImpl(private val context: Context) : AuthLoginInterface 
         }
 
         return errorLiveData
+    }
+
+    override fun remindPassword(email: String): LiveData<Boolean> {
+        val remindLiveData = MutableLiveData<Boolean>()
+        if (email.isNotBlank()) {
+            FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        remindLiveData.value = true
+                    }
+                }.addOnFailureListener {
+                    when (it) {
+                        is FirebaseAuthInvalidUserException -> {
+                            remindLiveData.value = false
+                        }
+                    }
+                }
+        } else remindLiveData.value = false
+
+        return remindLiveData
     }
 
     private fun loginUser(email: String, password: String) {

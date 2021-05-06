@@ -64,7 +64,7 @@
                         android:drawableLeft="@drawable/person_search_24px"
                         android:drawablePadding="10dp"
                         android:ems="10"
-                        android:fontFamily="@font/montserrat_bold"
+                        android:fontFamily="@font/montserrat"
                         android:hint="@string/type_location"
                         android:inputType="textPersonName"
                         android:paddingLeft="10dp"

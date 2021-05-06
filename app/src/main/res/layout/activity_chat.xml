@@ -78,7 +78,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
             android:layout_marginLeft="12dp"
-            android:background="@drawable/circle_profile"
+            android:background="@drawable/circle_chat_log"
             android:padding="3dp"
             app:layout_constraintBottom_toBottomOf="@+id/typeMessageEditText"
             app:layout_constraintStart_toStartOf="@+id/typeMessageEditText"

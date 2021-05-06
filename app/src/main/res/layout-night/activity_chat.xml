@@ -3,9 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#ECECEC"
->
+    android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewChat"
@@ -13,7 +11,6 @@
         android:layout_height="match_parent"
         android:layout_marginTop="56dp"
         android:layout_marginBottom="64dp"
-        android:background="#ECECEC"
         android:fitsSystemWindows="true"
         android:overScrollMode="never"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -25,7 +22,6 @@
         android:id="@+id/constraintLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ECECEC"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -38,10 +34,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:background="@drawable/shape_chat_log"
+            android:background="@drawable/shape_chat_log_dark"
             android:ems="10"
             android:fontFamily="@font/montserrat"
             android:hint="@string/type_message"
+            android:importantForAutofill="no"
             android:inputType="textShortMessage|textMultiLine"
             android:maxLength="255"
             android:maxLines="2"
@@ -56,8 +53,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.52"
-            android:importantForAutofill="no" />
+            app:layout_constraintVertical_bias="0.52" />
 
         <ImageButton
             android:id="@+id/sendMessageButton"
@@ -66,27 +62,26 @@
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:background="@null"
+            android:contentDescription="TODO"
             android:padding="7dp"
             app:layout_constraintBottom_toBottomOf="@+id/typeMessageEditText"
             app:layout_constraintEnd_toEndOf="@+id/typeMessageEditText"
             app:layout_constraintTop_toTopOf="@+id/typeMessageEditText"
-            app:srcCompat="@drawable/send_24px"
-            android:contentDescription="TODO" />
+            app:srcCompat="@drawable/send_24px" />
 
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:background="@drawable/circle_profile"
+            android:background="@drawable/circle_chat_log_dark"
+            android:contentDescription="TODO"
             android:padding="3dp"
             app:layout_constraintBottom_toBottomOf="@+id/typeMessageEditText"
             app:layout_constraintStart_toStartOf="@+id/typeMessageEditText"
             app:layout_constraintTop_toTopOf="@+id/typeMessageEditText"
             app:layout_constraintVertical_bias="0.47"
             app:srcCompat="@drawable/label_24px"
-            app:tint="#FFFFFF"
-            android:contentDescription="TODO" />
+            app:tint="#131313" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -95,7 +90,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
+        android:background="@color/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -120,7 +115,7 @@
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/montserrat"
                 android:text="Chat"
-                android:textColor="#000000"
+                android:textColor="@color/toolbar_title"
                 android:textSize="17sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/toolbar"

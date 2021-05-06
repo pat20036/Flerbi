@@ -9,7 +9,8 @@ interface OnlineOfflineInterface {
 }
 
 class OnlineOfflineInterfaceImpl() : OnlineOfflineInterface {
-    private val uid = FirebaseAuth.getInstance().uid!!
+
+    val uid = FirebaseAuth.getInstance().uid.toString()
     private val database = FirebaseDatabase.getInstance().getReference("active-users").child(uid)
     override fun addToActiveUsers() {
         database.setValue(uid)

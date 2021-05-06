@@ -40,6 +40,11 @@ class ConfirmActionFragment : Fragment() {
             val password = binding.confirmPasswordEditText.editText?.text.toString()
             authViewModel.confirmIdentity(email, password)
         }
+
+        binding.confirmActionBackButton.setOnClickListener()
+        {
+            findNavController().popBackStack()
+        }
     }
 
     private fun observeResponse()

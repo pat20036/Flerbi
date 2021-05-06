@@ -47,6 +47,10 @@ class LoginFragment : Fragment() {
             authViewModel.loginUser(email, password)
         }
 
+        binding.logInBackButton.setOnClickListener()
+        {
+            findNavController().popBackStack()
+        }
     }
 
     private fun getInputData() {

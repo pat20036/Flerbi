@@ -14,6 +14,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 class DarkThemeFragment : Fragment() {
     private lateinit var binding: FragmentDarkThemeBinding
     private val userViewModel by sharedViewModel<UserViewModel>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,6 +41,5 @@ class DarkThemeFragment : Fragment() {
     {
         val darkTheme = userViewModel.darkTheme.value!!
         if(darkTheme) binding.darkThemeSwitch.isChecked = true
-
     }
 }

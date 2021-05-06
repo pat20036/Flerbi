@@ -35,6 +35,11 @@ class ChangePasswordFragment : Fragment() {
             val newPassword = binding.newPasswordEditText.editText?.text.toString()
             authViewModel.changePassword(newPassword)
         }
+
+        binding.newPasswordBackButton.setOnClickListener()
+        {
+            findNavController().popBackStack()
+        }
     }
 
     private fun observeResponse() {

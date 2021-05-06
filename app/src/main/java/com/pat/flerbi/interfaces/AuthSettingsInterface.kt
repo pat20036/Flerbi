@@ -24,13 +24,14 @@ interface AuthSettingsInterface {
 
 class AuthSettingsInterfaceImpl(private val context: Context) : AuthSettingsInterface {
 
-    private val uid = FirebaseAuth.getInstance().uid
-    private val user = FirebaseAuth.getInstance().currentUser
+    private val firebaseInstance = FirebaseDatabase.getInstance()
     private val sharedPreferences =
         context.getSharedPreferences("shared_preferences", Context.MODE_PRIVATE)
 
     override fun confirmIdentity(email: String, password: String): LiveData<Boolean> {
         val responseLiveData = MutableLiveData<Boolean>()
+        val user = FirebaseAuth.getInstance().currentUser
+
         if (password.isNotBlank()) {
             val credential = EmailAuthProvider.getCredential(email, password)
             user?.reauthenticate(credential)?.addOnCompleteListener()
@@ -53,6 +54,8 @@ class AuthSettingsInterfaceImpl(private val context: Context) : AuthSettingsInte
 
     override fun changePassword(password: String): LiveData<Boolean> {
         val responseLiveData = MutableLiveData<Boolean>()
+        val user = FirebaseAuth.getInstance().currentUser
+
         if (password.isNotBlank()) {
             user.updatePassword(password).addOnSuccessListener {
                 responseLiveData.value = true
@@ -65,9 +68,10 @@ class AuthSettingsInterfaceImpl(private val context: Context) : AuthSettingsInte
         return responseLiveData
     }
 
-    override fun deleteAccount(nickname:String): LiveData<Boolean> {
-
+    override fun deleteAccount(nickname: String): LiveData<Boolean> {
         val responseLiveData = MutableLiveData<Boolean>()
+        val user = FirebaseAuth.getInstance().currentUser
+
         user?.delete()?.addOnCompleteListener {
             if (it.isSuccessful) {
                 deleteFromActiveUsers()
@@ -86,26 +90,27 @@ class AuthSettingsInterfaceImpl(private val context: Context) : AuthSettingsInte
         return responseLiveData
     }
 
-    private fun deleteFromActiveUsers()
-    {
-        val activeUserDb =
-        FirebaseDatabase.getInstance().getReference("active-users/$uid")
-        activeUserDb.removeValue()
-    }
-    private fun deleteFromDatabase()
-    {
-        val registeredUserDb =
-            FirebaseDatabase.getInstance().getReference("registered-users/$uid")
-        registeredUserDb.removeValue()
-    }
-    private fun deleteUserTags() = FirebaseDatabase.getInstance().getReference("user-tags/$uid").removeValue()
+    private fun deleteFromActiveUsers() {
+        val uid = FirebaseAuth.getInstance().uid
+        firebaseInstance.getReference("active-users/$uid").removeValue()
 
-    private fun deleteNickname(nickname: String)
-    {
-        val nicknameDb = FirebaseDatabase.getInstance().getReference("nicknames/$nickname")
-        nicknameDb.removeValue()
     }
 
+    private fun deleteFromDatabase() {
+        val uid = FirebaseAuth.getInstance().uid
+        firebaseInstance.getReference("registered-users/$uid").removeValue()
+
+    }
+
+    private fun deleteUserTags() {
+        val uid = FirebaseAuth.getInstance().uid
+        firebaseInstance.getReference("user-tags/$uid").removeValue()
+    }
+
+
+    private fun deleteNickname(nickname: String) {
+        firebaseInstance.getReference("nicknames/$nickname").removeValue()
+    }
 
 
 }

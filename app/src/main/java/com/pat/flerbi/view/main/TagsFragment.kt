@@ -46,7 +46,6 @@ class TagsFragment : Fragment() {
         userViewModel.getProfileTags()
     }
 
-
     private fun observeUserTags() {
         userViewModel.profileTags.observe(viewLifecycleOwner, Observer {
             if (it.isEmpty())
@@ -64,7 +63,6 @@ class TagsFragment : Fragment() {
             chip.setTextAppearance(R.style.CustomChipStyle)
             myTagsChipGroup.addView(chip)
         }
-
     }
 
     private fun showInfo() {
