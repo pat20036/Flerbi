@@ -16,7 +16,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val userViewModel by viewModel<UserViewModel>()
-    private val uid = FirebaseAuth.getInstance().uid!!
+    private val uid = FirebaseAuth.getInstance().uid
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -36,12 +36,12 @@ class MainActivity : AppCompatActivity() {
                 else -> bottomNavigationView.visibility = View.GONE
             }
         }
-        userViewModel.addToActiveUsers(uid)
+        userViewModel.addToActiveUsers(uid.toString())
 
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        userViewModel.removeFromActiveUsers(uid)
+        userViewModel.removeFromActiveUsers(uid.toString())
     }
 }

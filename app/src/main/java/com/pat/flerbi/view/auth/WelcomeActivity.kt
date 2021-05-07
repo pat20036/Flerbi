@@ -12,8 +12,12 @@ import com.pat.flerbi.viewmodel.UserViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class WelcomeActivity : AppCompatActivity() {
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////CREATED BY: @pat20036 github.com/////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////
     private lateinit var binding: ActivityWelcomeBinding
     private val userViewModel by viewModel<UserViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         super.onCreate(savedInstanceState)

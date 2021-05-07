@@ -12,10 +12,18 @@
         tools:layout="@layout/fragment_main" >
         <action
             android:id="@+id/action_mainFragment_to_locationSettingsFragment"
-            app:destination="@id/locationSettingsFragment" />
+            app:destination="@id/locationSettingsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_close_exit"/>
         <action
             android:id="@+id/action_mainFragment_to_queueFragment"
-            app:destination="@id/queueFragment" />
+            app:destination="@id/queueFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_close_exit"/>
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -23,10 +31,18 @@
         android:label="ProfileFragment" >
         <action
             android:id="@+id/action_profileFragment_to_darkThemeFragment"
-            app:destination="@id/darkThemeFragment" />
+            app:destination="@id/darkThemeFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_close_exit"/>
         <action
             android:id="@+id/action_profileFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_close_exit"/>
     </fragment>
     <fragment
         android:id="@+id/tagsFragment"
@@ -34,7 +50,11 @@
         android:label="TagsFragment" >
         <action
             android:id="@+id/action_tagsFragment_to_allTagsFragment"
-            app:destination="@id/allTagsFragment" />
+            app:destination="@id/allTagsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
     </fragment>
     <fragment
         android:id="@+id/locationSettingsFragment"
@@ -60,31 +80,67 @@
         android:label="SettingsFragment" >
         <action
             android:id="@+id/action_settingsFragment_to_confirmActionFragment"
-            app:destination="@id/confirmActionFragment" />
+            app:destination="@id/confirmActionFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_close_exit"/>
         <action
             android:id="@+id/action_settingsFragment_to_appInfoFragment"
-            app:destination="@id/appInfoFragment" />
+            app:destination="@id/appInfoFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_close_exit"/>
         <action
             android:id="@+id/action_settingsFragment_to_externalLibsFragment"
-            app:destination="@id/externalLibsFragment" />
+            app:destination="@id/externalLibsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_close_exit"/>
         <action
             android:id="@+id/action_settingsFragment_to_termsFragment"
-            app:destination="@id/termsFragment" />
+            app:destination="@id/termsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_close_exit"/>
         <action
             android:id="@+id/action_settingsFragment_to_externalLibsFragment2"
-            app:destination="@id/externalLibsFragment" />
+            app:destination="@id/externalLibsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_close_exit"/>
         <action
             android:id="@+id/action_settingsFragment_to_termsFragment2"
-            app:destination="@id/termsFragment" />
+            app:destination="@id/termsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_close_exit"/>
         <action
             android:id="@+id/action_settingsFragment_to_contactFragment"
-            app:destination="@id/contactFragment" />
+            app:destination="@id/contactFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_close_exit"/>
         <action
             android:id="@+id/action_settingsFragment_to_imagesAuthorsFragment"
-            app:destination="@id/imagesAuthorsFragment" />
+            app:destination="@id/imagesAuthorsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_close_exit"/>
         <action
             android:id="@+id/action_settingsFragment_to_suggestionsFragment"
-            app:destination="@id/suggestionsFragment" />
+            app:destination="@id/suggestionsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_close_exit"/>
     </fragment>
     <fragment
         android:id="@+id/appInfoFragment"
@@ -105,12 +161,20 @@
             android:id="@+id/action_confirmActionFragment_to_changePasswordFragment"
             app:destination="@id/changePasswordFragment"
             app:popUpTo="@id/confirmActionFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_close_exit"/>
         <action
             android:id="@+id/action_confirmActionFragment_to_deleteAccountFragment"
             app:destination="@id/deleteAccountFragment"
             app:popUpTo="@id/confirmActionFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_open_enter"
+            app:popExitAnim="@anim/fragment_close_exit"/>
     </fragment>
     <fragment
         android:id="@+id/termsFragment"

@@ -5,16 +5,28 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.pat.flerbi.R
+import com.pat.flerbi.databinding.FragmentExternalLibsBinding
 
 class ExternalLibsFragment : Fragment() {
+    private lateinit var binding: FragmentExternalLibsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_external_libs, container, false)
+        binding = FragmentExternalLibsBinding.inflate(layoutInflater)
+        return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        binding.librariesBackButton.setOnClickListener()
+        {
+            findNavController().popBackStack()
+        }
     }
 
 }
