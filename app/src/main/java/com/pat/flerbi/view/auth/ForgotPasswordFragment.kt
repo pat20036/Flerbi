@@ -13,6 +13,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 class ForgotPasswordFragment : Fragment() {
     private lateinit var binding: FragmentForgotPasswordBinding
     private val authViewModel by sharedViewModel<AuthViewModel>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,7 +40,5 @@ class ForgotPasswordFragment : Fragment() {
             else binding.emailForgetEditText.error = "Error!"
         })
     }
-
-
 
 }

@@ -22,6 +22,7 @@ class LoginFragment : Fragment() {
     private lateinit var password: String
     private lateinit var binding: FragmentLoginBinding
     private val authViewModel by sharedViewModel<AuthViewModel>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

@@ -24,6 +24,7 @@ class RegisterFragment : Fragment() {
     private lateinit var nickname: String
     private var touAccepted = false
     private val authViewModel by sharedViewModel<AuthViewModel>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,8 +49,6 @@ class RegisterFragment : Fragment() {
         {
             findNavController().popBackStack()
         }
-
-
     }
 
     private fun clearDataErrors() {

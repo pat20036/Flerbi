@@ -18,10 +18,10 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
 class QueueFragment : Fragment() {
-
     private lateinit var binding: FragmentQueueBinding
     private val queueViewModel by sharedViewModel<QueueViewModel>()
     private val userViewModel by sharedViewModel<UserViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sharedElementEnterTransition =
@@ -35,7 +35,6 @@ class QueueFragment : Fragment() {
         binding = FragmentQueueBinding.inflate(layoutInflater)
         return binding.root
     }
-
 
     override fun onStart() {
         super.onStart()
@@ -52,7 +51,6 @@ class QueueFragment : Fragment() {
             queueViewModel.stopSearch()
         }
     }
-
 
     override fun onPause() {
         super.onPause()

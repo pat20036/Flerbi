@@ -22,6 +22,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class TagsFragment : Fragment() {
     private lateinit var binding: FragmentTagsBinding
     private val userViewModel by sharedViewModel<UserViewModel>()
+    
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

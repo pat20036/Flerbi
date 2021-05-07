@@ -13,6 +13,7 @@ import com.pat.flerbi.helpers.QueueInfo.matchTags
 
 class ChatTagsBottomSheet : BottomSheetDialogFragment() {
     private lateinit var binding: ChatTagsBottomSheetLayoutBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

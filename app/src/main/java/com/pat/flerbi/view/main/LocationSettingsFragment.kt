@@ -41,7 +41,6 @@ class LocationSettingsFragment : Fragment() {
         {
             findNavController().popBackStack()
         }
-
     }
 
     private fun observeFavoriteLocation() {

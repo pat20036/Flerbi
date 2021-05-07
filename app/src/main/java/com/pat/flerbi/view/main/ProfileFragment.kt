@@ -16,6 +16,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
     private val userViewModel by sharedViewModel<UserViewModel>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

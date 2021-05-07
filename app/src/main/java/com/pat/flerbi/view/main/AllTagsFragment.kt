@@ -20,6 +20,7 @@ class AllTagsFragment : Fragment() {
     private lateinit var binding: FragmentAllTagsBinding
     private val userViewModel by sharedViewModel<UserViewModel>()
     private val tagsList = mutableListOf<String>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,7 +31,6 @@ class AllTagsFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-
 
         binding.tagsBackButton.setOnClickListener()
         {
@@ -63,6 +63,5 @@ class AllTagsFragment : Fragment() {
      })
 
     }
-
 
 }
