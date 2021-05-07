@@ -65,8 +65,8 @@ class AuthViewModel(
         })
     }
 
-    fun deleteAccount(nickname: String) {
-        authSettingsInterface.deleteAccount(nickname).observeForever(Observer {
+    fun deleteAccount(uid:String, nickname: String) {
+        authSettingsInterface.deleteAccount(uid ,nickname).observeForever(Observer {
             _isAccountDeleted.value = it
         })
     }

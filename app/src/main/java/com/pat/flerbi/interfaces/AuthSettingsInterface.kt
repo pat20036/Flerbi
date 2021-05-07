@@ -19,7 +19,7 @@ import com.pat.flerbi.view.auth.WelcomeActivity
 interface AuthSettingsInterface {
     fun confirmIdentity(email: String, password: String): LiveData<Boolean>
     fun changePassword(password: String): LiveData<Boolean>
-    fun deleteAccount(nickname: String): LiveData<Boolean>
+    fun deleteAccount(uid: String, nickname: String): LiveData<Boolean>
 }
 
 class AuthSettingsInterfaceImpl(private val context: Context) : AuthSettingsInterface {
@@ -68,15 +68,15 @@ class AuthSettingsInterfaceImpl(private val context: Context) : AuthSettingsInte
         return responseLiveData
     }
 
-    override fun deleteAccount(nickname: String): LiveData<Boolean> {
+    override fun deleteAccount(uid:String, nickname: String): LiveData<Boolean> {
         val responseLiveData = MutableLiveData<Boolean>()
         val user = FirebaseAuth.getInstance().currentUser
 
         user?.delete()?.addOnCompleteListener {
             if (it.isSuccessful) {
-                deleteFromActiveUsers()
-                deleteFromDatabase()
-                deleteUserTags()
+                deleteFromActiveUsers(uid)
+                deleteFromDatabase(uid)
+                deleteUserTags(uid)
                 deleteNickname(nickname)
 
                 sharedPreferences.edit().clear().apply()
@@ -90,27 +90,14 @@ class AuthSettingsInterfaceImpl(private val context: Context) : AuthSettingsInte
         return responseLiveData
     }
 
-    private fun deleteFromActiveUsers() {
-        val uid = FirebaseAuth.getInstance().uid
-        firebaseInstance.getReference("active-users/$uid").removeValue()
+    private fun deleteFromActiveUsers(uid:String) = firebaseInstance.getReference("active-users/$uid").removeValue()
 
-    }
+    private fun deleteFromDatabase(uid:String) = firebaseInstance.getReference("registered-users/$uid").removeValue()
 
-    private fun deleteFromDatabase() {
-        val uid = FirebaseAuth.getInstance().uid
-        firebaseInstance.getReference("registered-users/$uid").removeValue()
+    private fun deleteUserTags(uid:String) = firebaseInstance.getReference("user-tags/$uid").removeValue()
 
-    }
+    private fun deleteNickname(nickname: String) = firebaseInstance.getReference("nicknames/$nickname").removeValue()
 
-    private fun deleteUserTags() {
-        val uid = FirebaseAuth.getInstance().uid
-        firebaseInstance.getReference("user-tags/$uid").removeValue()
-    }
-
-
-    private fun deleteNickname(nickname: String) {
-        firebaseInstance.getReference("nicknames/$nickname").removeValue()
-    }
 
 
 }

@@ -49,7 +49,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/toolbar"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/arrow_back_black_24dp"
+                app:srcCompat="@drawable/back_arrow"
                 app:tint="#FFFFFF" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -35,7 +35,7 @@ class ForgotPasswordFragment : Fragment() {
     private fun observeResponse()
     {
         authViewModel.remindResponse.observe(viewLifecycleOwner, Observer {
-            if(it) binding.emailForgetEditText.helperText = "Sent!"
+            if(it) binding.mailMessageTextView.visibility = View.VISIBLE
             else binding.emailForgetEditText.error = "Error!"
         })
     }

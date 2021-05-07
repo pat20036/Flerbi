@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
 import com.pat.flerbi.R
 import com.pat.flerbi.databinding.FragmentDeleteAccountBinding
 import com.pat.flerbi.viewmodel.AuthViewModel
@@ -32,10 +33,11 @@ class DeleteAccountFragment : Fragment() {
         super.onStart()
 
         val nickname = userViewModel.userNickname.value!!
+        val uid = FirebaseAuth.getInstance().uid!!
         observeResponse()
         binding.confirmDeleteAccountButton.setOnClickListener()
         {
-            authViewModel.deleteAccount(nickname)
+            authViewModel.deleteAccount(uid, nickname)
         }
 
         binding.backButton.setOnClickListener()

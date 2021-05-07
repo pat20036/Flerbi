@@ -63,12 +63,12 @@ class UserViewModel(
         _userEmail.value = userInterface.getUserEmail()
     }
 
-    fun addToActiveUsers() {
-        databaseInterface.addToActiveUsers()
+    fun addToActiveUsers(uid:String) {
+        databaseInterface.addToActiveUsers(uid)
     }
 
-    fun removeFromActiveUsers() {
-        databaseInterface.removeFromActiveUsers()
+    fun removeFromActiveUsers(uid:String) {
+        databaseInterface.removeFromActiveUsers(uid)
     }
 
     fun setLastLocation(location: String) {

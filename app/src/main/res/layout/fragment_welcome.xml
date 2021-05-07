@@ -7,6 +7,16 @@
     android:background="@color/main_app_color">
 
 
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="261dp"
+        android:layout_height="211dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/action_bar_logo_light" />
+
     <Button
         android:id="@+id/login_bt"
         android:layout_width="match_parent"
@@ -67,16 +77,6 @@
         android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="@+id/textView13"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
-
-    <ImageView
-        android:id="@+id/imageView14"
-        android:layout_width="309dp"
-        android:layout_height="267dp"
-        android:layout_marginTop="32dp"
-        android:src="@drawable/ic_launcher_foreground"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

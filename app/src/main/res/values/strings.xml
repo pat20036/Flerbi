@@ -72,13 +72,12 @@
     <string name="flerbi">Flerbi</string>
     <string name="images_authors">Images authors</string>
     <string name="external_libraries">External libraries</string>
-    <string name="application_informations">Application informations</string>
+    <string name="application_information">Application information</string>
     <string name="suggestions">Suggestions</string>
-    <string name="contact">Contact</string>
     <string name="delete_account">Delete account</string>
     <string name="username">Username</string>
-    <string name="additional_informations">Additional informations</string>
-    <string name="e_mail_adress">E-mail adress</string>
+    <string name="additional_information">Additional information</string>
+    <string name="e_mail_address">E-mail address</string>
     <string name="app">App</string>
     <string name="account">Account</string>
     <string name="verify">Verify</string>
@@ -91,4 +90,9 @@
     <string name="change_password">Change password</string>
     <string name="enter_new_password">Enter new password</string>
     <string name="register">Register</string>
+    <string name="contact">Contact</string>
+    <string name="source">Source:</string>
+    <string name="authors">Authors:</string>
+    <string name="avatar">Avatar</string>
+    <string name="icons">Icons</string>
 </resources>
