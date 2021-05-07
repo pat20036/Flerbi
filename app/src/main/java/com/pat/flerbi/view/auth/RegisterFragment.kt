@@ -14,6 +14,7 @@ import com.pat.flerbi.databinding.FragmentRegisterBinding
 import com.pat.flerbi.model.RegisterError
 import com.pat.flerbi.viewmodel.AuthViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class RegisterFragment : Fragment() {
@@ -23,7 +24,7 @@ class RegisterFragment : Fragment() {
     private lateinit var rePassword: String
     private lateinit var nickname: String
     private var touAccepted = false
-    private val authViewModel by sharedViewModel<AuthViewModel>()
+    private val authViewModel by viewModel<AuthViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
