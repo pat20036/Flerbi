@@ -49,3 +49,12 @@ Flerbi - social application. Search for users based on the entered location in r
 - <b>Avatar:</b> [Pixabay](https://pixabay.com)
 
 ## Presentation
+
+### Login/Register
+<img src="https://i.imgur.com/hJ3lXWz.png" width="80%"></img>
+
+### Dark Theme
+<img src="https://i.imgur.com/xIP7l9C.png" width="80%"></img>
+
+### Chat/tags
+<img src="https://i.imgur.com/lcMIkVr.png" width="80%"></img>
