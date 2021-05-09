@@ -5,6 +5,7 @@ plugins {
 
 plugins {
     id 'kotlin-parcelize'
+    id 'com.google.gms.google-services'
 }
 android {
     compileSdkVersion 30
